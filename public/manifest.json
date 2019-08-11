@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "USDA API",
+  "name": "USDA Nutrition Information",
   "icons": [
     {
       "src": "favicon.ico",
