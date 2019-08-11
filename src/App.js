@@ -1,12 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+export class App extends Component {
+  static propTypes = {
+    prop: PropTypes
+  }
+
+  render() {
+    return (
+      <div className="App">
+        Hello World
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  
+})
+
+const mapDispatchToProps = {
+  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
