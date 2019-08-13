@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import './SearchBar';
 import SearchBar from './SearchBar';
+import SearchResult from './SearchResult';
 
 export class App extends Component {
   static propTypes = {
@@ -14,6 +15,7 @@ export class App extends Component {
     return (
       <div className="App">
         <SearchBar/>
+        <SearchResult/>
       </div>
     )
   }
