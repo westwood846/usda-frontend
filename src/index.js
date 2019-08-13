@@ -6,6 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import store from './store.js';
 import { Provider } from 'react-redux';
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store()}><App /></Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();
