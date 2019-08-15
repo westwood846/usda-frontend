@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import './App.css';
 import SearchPage from './SearchPage';
 import ReportPage from './ReportPage';
 
 export class App extends Component {
-  static propTypes = {
-    // prop: PropTypes
-  }
-
   render() {
     return (
       // <Router>
