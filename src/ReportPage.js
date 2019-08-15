@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Report from './Report';
 import { getReport } from './actions';
+import Breadcrumbs from './Breadcrumbs';
 
 class ReportPage extends Component {
   constructor(props) {
@@ -12,13 +13,16 @@ class ReportPage extends Component {
 
 
   render() {
-    return (
+    return this.props.getReportResult ? (
       <div className="ReportPage">
-        <h1>{this.props.getReportResult ? `${this.props.getReportResult.desc.name}` : `Loading report for ndbno ${this.props.match.params.ndbno}`}</h1>
-        {this.props.getReportResult && <div>{[this.props.getReportResult.desc.ds, this.props.getReportResult.desc.manu, this.props.getReportResult.desc.ndbno].filter(e=>e).join(" · ")}</div>}
+        <h1>
+          {this.props.getReportResult ? `${this.props.getReportResult.desc.name}` : `Loading report for ndbno ${this.props.match.params.ndbno}`}<br/>
+          <small>{this.props.getReportResult && <div>{[this.props.getReportResult.desc.ds, this.props.getReportResult.desc.manu, this.props.getReportResult.desc.ndbno].filter(e=>e).join(" · ")}</div>}</small>
+        </h1>
+        <Breadcrumbs/>
         <Report/>
       </div>
-    )
+    ) : null;
   }
 }
 

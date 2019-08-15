@@ -5,6 +5,10 @@
   
 }
 
+.Breadcrumbs {
+  margin-bottom: 1rem;
+}
+
 .Breadcrumbs-item {
   text-decoration: none;
 }

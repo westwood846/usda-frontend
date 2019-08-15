@@ -7,7 +7,6 @@ class Report extends Component {
   render() {
     return (
       <div className="Report">
-        <Breadcrumbs/>
         <table>
           <thead>
             <tr>
