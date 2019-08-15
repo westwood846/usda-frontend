@@ -2,16 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SearchResult from './SearchResult';
 import SearchBar from './SearchBar';
-import { search } from '../actions';
+import { setQuery, search } from '../actions';
 
 class SearchPage extends Component {
   constructor(props) {
     super(props);
     let urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('dataSource')) {
+      this.props.setQuery(urlParams.get('dataSource' || 'BOTH'));
+    }
     if (urlParams.has('query')) {
-      this.props.search(urlParams.get('query'));
+      this.props.setQuery(urlParams.get('query'));
+      this.props.search();
     } else {
-      this.props.search('');
+      this.props.setQuery('');
     }
   }
   
@@ -44,6 +48,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+  setQuery,
   search
 }
 

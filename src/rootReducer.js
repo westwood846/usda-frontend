@@ -1,21 +1,30 @@
-import { SEARCH, SEARCH_FULFILLED, SEARCH_REJECTED, GET_REPORT, GET_REPORT_FULFILLED, GET_REPORT_REJECTED } from "./actionTypes";
+import { SEARCH, SEARCH_FULFILLED, SEARCH_REJECTED, GET_REPORT, GET_REPORT_FULFILLED, GET_REPORT_REJECTED, SET_QUERY, SET_DATA_SOURCE } from "./actionTypes";
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
 const initialState = {
-  searching: false
+  searching: false,
+  searchQuery: '',
+  searchDataSource: 'BOTH'
 }
 
 const appReducer = (state = initialState, { type, payload }) => {
   switch (type) {
 
+  case SET_QUERY:
+    console.log(type, payload)
+    return { ...state, searchQuery: payload };
+
+  case SET_DATA_SOURCE:
+    console.log(type, payload)
+    return { ...state, searchDataSource: payload };
+
   case SEARCH:
     console.log(type, payload)
-    if (payload === '') {
-      return { ...state, searchQuery: payload, searching: false, searchResult: undefined, searchError: undefined };
-    } else {
-      return { ...state, searchQuery: payload, searching: true, searchResult: undefined, searchError: undefined };
-    }
+    // if (!payload) payload = {};
+    // payload.query = state.searchQuery;
+    // payload.dataSource = state.searchDataSource;
+    return { ...state, searching: true, searchResult: undefined, searchError: undefined };
 
   case SEARCH_FULFILLED:
     console.log(type, payload)

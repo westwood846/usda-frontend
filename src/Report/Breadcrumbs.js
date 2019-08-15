@@ -10,7 +10,7 @@ class Breadcrumbs extends Component {
         {fragments.map((fragment, index, fragments) => 
           <span key={index}>
             &nbsp;/&nbsp;
-            <Link to={{pathname: "/search", search: `?query=${fragments.slice(0, index + 1).join(', ')}`}} className="Breadcrumbs-item">
+            <Link to={{pathname: "/search", search: `?query=${fragments.slice(0, index + 1).join(', ')}&dataSource=${this.props.dataSource}`}} className="Breadcrumbs-item">
               {fragment}
             </Link>
           </span>
@@ -21,6 +21,7 @@ class Breadcrumbs extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  dataSource: state.app.searchDataSource
 })
 
 const mapDispatchToProps = {
