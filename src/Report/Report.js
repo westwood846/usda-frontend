@@ -10,7 +10,7 @@ class Report extends Component {
 
     return (
       <div className="Report">
-        {Object.keys(nutrientGroups).map(groupKey => <NutrientTable nutrients={nutrientGroups[groupKey]}/>)}
+        {Object.keys(nutrientGroups).map((groupKey, index) => <NutrientTable nutrients={nutrientGroups[groupKey]} key={index}/>)}
       </div>
     )
   }
