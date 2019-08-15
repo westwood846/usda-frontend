@@ -27,11 +27,6 @@ class Report extends Component {
             ))}
           </tbody>
         </table>
-        <pre>
-          <code>
-            {this.props.getReportResult && JSON.stringify(this.props.getReportResult, null, 2)}
-          </code>
-        </pre>
       </div>
     )
   }
