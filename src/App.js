@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import './App.css';
-import './SearchBar';
-import SearchBar from './SearchBar';
-import SearchResult from './SearchResult';
-import Report from './Report';
+import SearchPage from './SearchPage';
+import ReportPage from './ReportPage';
 
 export class App extends Component {
   static propTypes = {
@@ -14,11 +13,20 @@ export class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <SearchBar/>
-        <SearchResult/>
-        <Report/>
-      </div>
+      <Router>
+        <div className="App">
+          {/* <SearchBar/>
+          <SearchResult/>
+          <Report/> */}
+          <Link to="/search/">Search</Link>
+          <Link to="/report/123">Report</Link>
+          {/* <Switch> */}
+            <Route path="/" exact component={SearchPage}/>
+            <Route path="/search" component={SearchPage}/>
+            <Route path="/report/:ndbno" component={ReportPage}/>
+          {/* </Switch> */}
+        </div>
+      </Router>
     )
   }
 }
