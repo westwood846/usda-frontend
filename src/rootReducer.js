@@ -15,11 +15,11 @@ const appReducer = (state = initialState, { type, payload }) => {
 
   case SEARCH_FULFILLED:
     console.log(type, payload)
-    return { ...state, searchResult: payload, searching: false, searchQuery: undefined };
+    return { ...state, searchResult: payload, searching: false };
     
   case SEARCH_REJECTED:
     console.log(type, payload)
-    return { ...state, searchError: payload, searching: false, searchQuery: undefined };
+    return { ...state, searchError: payload, searching: false };
 
   case GET_REPORT:
     console.log(type, payload)
