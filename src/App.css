@@ -4,3 +4,7 @@
 .SearchBar {
   
 }
+
+.Breadcrumbs-item {
+  text-decoration: none;
+}

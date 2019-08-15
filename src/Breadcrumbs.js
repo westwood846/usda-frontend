@@ -6,11 +6,11 @@ class Breadcrumbs extends Component {
   render() {
     let fragments = this.props.getReportResult ? this.props.getReportResult.desc.name.split(', ') : [];
     return (
-      <div>
+      <div className="Breadcrumbs">
         {fragments.map((fragment, index, fragments) => 
           <span key={index}>
             &nbsp;/&nbsp;
-            <Link to={{pathname: "/search", search: `?query=${fragments.slice(0, index + 1).join(', ')}`}}>
+            <Link to={{pathname: "/search", search: `?query=${fragments.slice(0, index + 1).join(', ')}`}} className="Breadcrumbs-item">
               {fragment}
             </Link>
           </span>
