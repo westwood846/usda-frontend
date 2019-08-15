@@ -1,5 +1,5 @@
 import { ajax } from 'rxjs/ajax';
-import { mergeMap, map, catchError, debounceTime } from 'rxjs/operators';
+import { mergeMap, map, catchError, debounceTime, filter } from 'rxjs/operators';
 import { ofType, combineEpics } from 'redux-observable';
 import { SEARCH, SEARCH_REJECTED, GET_REPORT, GET_REPORT_REJECTED } from './actionTypes';
 import { searchFulfilled, searchRejected, getReportRejected, getReportFulfilled } from './actions';
@@ -10,6 +10,7 @@ const USDA_API_KEY = 'FYTSTF75mesLeO85VFSKvqgWEzdL0hQAYCZUtjJk';
 const searchEpic = action$ => action$.pipe(
   ofType(SEARCH),
   debounceTime(500),
+  filter(action => action.payload !== ''),
   mergeMap(action =>
     ajax.getJSON(`https://api.nal.usda.gov/ndb/search?api_key=${USDA_API_KEY}&q=${encodeURIComponent(action.payload)}&ds=${encodeURIComponent('Standard Reference')}`).pipe(
       map(response => response.errors ? searchRejected(response) : searchFulfilled(response)),

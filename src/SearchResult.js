@@ -27,7 +27,6 @@ class SearchResult extends Component {
 
     return (
       <div className="SearchResult">
-        <h3>Results</h3>
         {this.props.searching && <span>Searching for "{this.props.searchQuery}"...</span>}
         {this.props.searchError && <span>Error: "{JSON.stringify(this.props.searchError)}"</span>}
         {resultList}

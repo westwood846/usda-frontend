@@ -4,6 +4,7 @@ import Report from './Report';
 import { getReport } from './actions';
 import Breadcrumbs from './Breadcrumbs';
 import { get, isUndefined } from 'lodash';
+import { Link } from "react-router-dom";
 
 class ReportPage extends Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class ReportPage extends Component {
 
 
   render() {
-    console.log(this.props)
     return (
       <div className="ReportPage">
+        <Link to="/search/">&#8592; New Search</Link>
         <h1>
           {this.props.loaded ? `${this.props.name}` : `Loading report for ndbno ${this.urlNDBNO}`}<br/>
           {this.props.loaded && <small>{[this.props.ds, this.props.manu, this.props.ndbno].filter(e=>e).join(" · ")}</small>}

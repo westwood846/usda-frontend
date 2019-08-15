@@ -12,3 +12,7 @@
 .Breadcrumbs-item {
   text-decoration: none;
 }
+
+.SearchBar {
+  margin-bottom: 1rem;
+}

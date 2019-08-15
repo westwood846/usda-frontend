@@ -11,7 +11,11 @@ const appReducer = (state = initialState, { type, payload }) => {
 
   case SEARCH:
     console.log(type, payload)
-    return { ...state, searchQuery: payload, searching: true, searchResult: undefined, searchError: undefined };
+    if (payload === '') {
+      return { ...state, searchQuery: payload, searching: false, searchResult: undefined, searchError: undefined };
+    } else {
+      return { ...state, searchQuery: payload, searching: true, searchResult: undefined, searchError: undefined };
+    }
 
   case SEARCH_FULFILLED:
     console.log(type, payload)

@@ -11,6 +11,8 @@ class SearchPage extends Component {
     let urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('query')) {
       this.props.search(urlParams.get('query'));
+    } else {
+      this.props.search('');
     }
   }
   
