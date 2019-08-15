@@ -11,6 +11,4 @@ export const compareNutrients = (a, b) => {
   return groupOrder.indexOf(a.group) - groupOrder.indexOf(b.group) ;
 }
 
-export const groupByNutrientGroup = (nutrients) => {
-  groupBy(nutrients, 'group');
-}
+export const groupByNutrientGroup = (nutrients) => groupBy(nutrients, 'group');

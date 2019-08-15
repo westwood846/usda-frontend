@@ -16,3 +16,11 @@
 .SearchBar {
   margin-bottom: 1rem;
 }
+
+.NutrientTable {
+  margin-bottom: 1rem;
+}
+
+.NutrientTable thead tr {
+  font-weight: bold;
+}

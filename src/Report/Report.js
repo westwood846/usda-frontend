@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sortNutrientsByGroup } from '../usda';
+import { sortNutrientsByGroup, groupByNutrientGroup } from '../usda';
 import { NutrientTable } from './NutrientsTable';
 
 class Report extends Component {
   render() {
     let nutrients = sortNutrientsByGroup(this.props.report.nutrients);
+    let nutrientGroups = groupByNutrientGroup(nutrients);
 
     return (
       <div className="Report">
-        <NutrientTable nutrients={nutrients}/>
+        {Object.keys(nutrientGroups).map(groupKey => <NutrientTable nutrients={nutrientGroups[groupKey]}/>)}
       </div>
     )
   }
