@@ -10,13 +10,11 @@ class SearchBar extends Component {
   }
   
   handleInputChange = (event) => {
-    console.log('handleInputChange')
     this.props.setQuery(event.target.value);
     if (this.props.searchQuery) this.props.search();
   }
   
   handleDataSourceChange = (event) => {
-    console.log('handleDataSourceChange')
     this.props.setDataSource(event.target.value);
     if (this.props.searchQuery) this.props.search();
   }
@@ -25,6 +23,7 @@ class SearchBar extends Component {
     return (
       <div className="SearchBar">
         <label>Search: <input type="text" className="queryInput" value={this.props.searchQuery} onChange={this.handleInputChange} autoFocus/></label><br/>
+        Data Source:&nbsp;
         <label className="dataSourceInputLabel"><input type="radio" className="dataSourceInput" value="BOTH" checked={this.props.searchDataSource === 'BOTH'} onChange={this.handleDataSourceChange}></input>Both</label>
         <label className="dataSourceInputLabel"><input type="radio" className="dataSourceInput" value="STANDARD_REFERENCE" checked={this.props.searchDataSource === 'STANDARD_REFERENCE'} onChange={this.handleDataSourceChange}></input>Standard Reference</label>
         <label className="dataSourceInputLabel"><input type="radio" className="dataSourceInput" value="BRANDED_FOOD_PRODUCTS" checked={this.props.searchDataSource === 'BRANDED_FOOD_PRODUCTS'} onChange={this.handleDataSourceChange}></input>Branded Food Products</label>
