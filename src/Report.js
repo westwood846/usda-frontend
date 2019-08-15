@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Breadcrumbs from './Breadcrumbs';
 
 class Report extends Component {
   render() {
     return (
-      <div>
+      <div className="Report">
+        <Breadcrumbs/>
         <pre>
           <code>
             {JSON.stringify(this.props, null, 2)}
