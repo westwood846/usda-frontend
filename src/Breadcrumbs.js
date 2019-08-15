@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { search } from './actions';
+import { Link } from 'react-router-dom';
 
 class Breadcrumbs extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  
-  handleClick = (event) => this.props.search(event.target.value);
-
   render() {
     let fragments = this.props.getReportResult ? this.props.getReportResult.desc.name.split(', ') : [];
     return (
       <div>
-        {fragments.map((fragment, index, fragments) => <button onClick={this.handleClick} key={index} value={fragments.slice(0, index + 1).join(', ')}>{fragment}</button>)}
+        {fragments.map((fragment, index, fragments) => 
+          <span key={index}>
+            &nbsp;/&nbsp;
+            <Link to={{pathname: "/search", search: `?query=${fragments.slice(0, index + 1).join(', ')}`}}>
+              {fragment}
+            </Link>
+          </span>
+        )}
       </div>
     )
   }
@@ -25,7 +25,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  search
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Breadcrumbs)

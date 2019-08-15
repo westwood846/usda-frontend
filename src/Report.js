@@ -8,6 +8,26 @@ class Report extends Component {
     return (
       <div className="Report">
         <Breadcrumbs/>
+        <table>
+          <thead>
+            <tr>
+              <td>id</td>
+              <td>Name</td>
+              <td>Group</td>
+              <td>Per 100 g</td>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.getReportResult && this.props.getReportResult.nutrients.map((nutrient, index) => (
+              <tr key={index}>
+                <td>{nutrient.nutrient_id}</td>
+                <td>{nutrient.name}</td>
+                <td>{nutrient.group}</td>
+                <td>{`${nutrient.value} ${nutrient.unit}`}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         <pre>
           <code>
             {this.props.getReportResult && JSON.stringify(this.props.getReportResult, null, 2)}

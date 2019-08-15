@@ -15,6 +15,7 @@ class ReportPage extends Component {
     return (
       <div className="ReportPage">
         <h1>{this.props.getReportResult ? `${this.props.getReportResult.desc.name}` : `Loading report for ndbno ${this.props.match.params.ndbno}`}</h1>
+        {this.props.getReportResult && <div>{[this.props.getReportResult.desc.ds, this.props.getReportResult.desc.manu, this.props.getReportResult.desc.ndbno].filter(e=>e).join(" · ")}</div>}
         <Report/>
       </div>
     )
