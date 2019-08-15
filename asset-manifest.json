@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bouncing-dvd/static/css/main.f823e1f7.chunk.css",
-    "main.js": "/bouncing-dvd/static/js/main.b3c0dc45.chunk.js",
-    "main.js.map": "/bouncing-dvd/static/js/main.b3c0dc45.chunk.js.map",
-    "runtime~main.js": "/bouncing-dvd/static/js/runtime~main.762aeea1.js",
-    "runtime~main.js.map": "/bouncing-dvd/static/js/runtime~main.762aeea1.js.map",
-    "static/js/2.2c5c18f9.chunk.js": "/bouncing-dvd/static/js/2.2c5c18f9.chunk.js",
-    "static/js/2.2c5c18f9.chunk.js.map": "/bouncing-dvd/static/js/2.2c5c18f9.chunk.js.map",
-    "index.html": "/bouncing-dvd/index.html",
-    "precache-manifest.c0aab4f11613bd7123041adf892bddda.js": "/bouncing-dvd/precache-manifest.c0aab4f11613bd7123041adf892bddda.js",
-    "service-worker.js": "/bouncing-dvd/service-worker.js",
-    "static/css/main.f823e1f7.chunk.css.map": "/bouncing-dvd/static/css/main.f823e1f7.chunk.css.map"
+    "main.css": "/usda-frontend/static/css/main.f823e1f7.chunk.css",
+    "main.js": "/usda-frontend/static/js/main.44734477.chunk.js",
+    "main.js.map": "/usda-frontend/static/js/main.44734477.chunk.js.map",
+    "runtime~main.js": "/usda-frontend/static/js/runtime~main.8278bde8.js",
+    "runtime~main.js.map": "/usda-frontend/static/js/runtime~main.8278bde8.js.map",
+    "static/js/2.2c5c18f9.chunk.js": "/usda-frontend/static/js/2.2c5c18f9.chunk.js",
+    "static/js/2.2c5c18f9.chunk.js.map": "/usda-frontend/static/js/2.2c5c18f9.chunk.js.map",
+    "index.html": "/usda-frontend/index.html",
+    "precache-manifest.99666dbc67710bcff227c634aba13e9b.js": "/usda-frontend/precache-manifest.99666dbc67710bcff227c634aba13e9b.js",
+    "service-worker.js": "/usda-frontend/service-worker.js",
+    "static/css/main.f823e1f7.chunk.css.map": "/usda-frontend/static/css/main.f823e1f7.chunk.css.map"
   }
 }
