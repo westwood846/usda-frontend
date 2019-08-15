@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Breadcrumbs from './Breadcrumbs';
-import { getReport } from './actions';
 
 class Report extends Component {
   render() {
@@ -17,7 +15,7 @@ class Report extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.getReportResult && this.props.getReportResult.nutrients.map((nutrient, index) => (
+            {this.props.report.nutrients.map((nutrient, index) => (
               <tr key={index}>
                 <td>{nutrient.nutrient_id}</td>
                 <td>{nutrient.name}</td>
@@ -33,14 +31,9 @@ class Report extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  gettingReport: state.app.gettingReport,
-  getReportNDBNO: state.app.getReportNDBNO,
-  getReportResult: state.app.getReportResult,
-  getReportError: state.app.getReportError
 })
 
 const mapDispatchToProps = {
-  getReport
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Report)

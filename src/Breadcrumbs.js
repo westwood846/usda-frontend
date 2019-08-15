@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class Breadcrumbs extends Component {
   render() {
-    let fragments = this.props.getReportResult ? this.props.getReportResult.desc.name.split(', ') : [];
+    let fragments = this.props.name.split(', ');
     return (
       <div className="Breadcrumbs">
         {fragments.map((fragment, index, fragments) => 
@@ -21,7 +21,6 @@ class Breadcrumbs extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  getReportResult: state.app.getReportResult
 })
 
 const mapDispatchToProps = {

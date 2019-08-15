@@ -3,30 +3,38 @@ import { connect } from 'react-redux'
 import Report from './Report';
 import { getReport } from './actions';
 import Breadcrumbs from './Breadcrumbs';
+import { get, isUndefined } from 'lodash';
 
 class ReportPage extends Component {
   constructor(props) {
     super(props);
-    this.props.getReport(this.props.match.params.ndbno);
+    this.urlNDBNO = this.props.match.params.ndbno;
+    this.props.getReport(this.urlNDBNO);
   }
 
 
   render() {
-    return this.props.getReportResult ? (
+    console.log(this.props)
+    return (
       <div className="ReportPage">
         <h1>
-          {this.props.getReportResult ? `${this.props.getReportResult.desc.name}` : `Loading report for ndbno ${this.props.match.params.ndbno}`}<br/>
-          <small>{this.props.getReportResult && <div>{[this.props.getReportResult.desc.ds, this.props.getReportResult.desc.manu, this.props.getReportResult.desc.ndbno].filter(e=>e).join(" · ")}</div>}</small>
+          {this.props.loaded ? `${this.props.name}` : `Loading report for ndbno ${this.urlNDBNO}`}<br/>
+          {this.props.loaded && <small>{[this.props.ds, this.props.manu, this.props.ndbno].filter(e=>e).join(" · ")}</small>}
         </h1>
-        <Breadcrumbs/>
-        <Report/>
+        {this.props.loaded && <Breadcrumbs name={this.props.name}/>}
+        {this.props.loaded && <Report report={this.props.report}/>}
       </div>
-    ) : null;
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
-  getReportResult: state.app.getReportResult
+  loaded: !isUndefined(state.app.getReportResult),
+  report: state.app.getReportResult,
+  name: get(state.app.getReportResult, 'desc.name'),
+  ds: get(state.app.getReportResult, 'desc.ds'),
+  manu: get(state.app.getReportResult, 'desc.manu'),
+  ndbno: get(state.app.getReportResult, 'desc.ndbno'),
 })
 
 const mapDispatchToProps = {
