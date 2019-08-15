@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getReport } from './actions';
 
 class SearchResult extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.handleItemClick = this.handleItemClick.bind(this);
+  }
+  
+  handleItemClick = (event) => {
+    this.props.getReport(event.target.value);
+  }
+  
   render() {
     let resultList = !this.searching && this.props.searchResult && (
       <div>
         <div>Result for "{this.props.searchResult.q}" in "{this.props.searchResult.ds}" ():</div>
         <ul>
-          {this.props.searchResult.item.map((item, index) => <li key={index}>{item.name}</li>)}
+          {this.props.searchResult.item.map((item, index) => <li key={index}><button onClick={this.handleItemClick} value={item.ndbno}>{item.name}</button></li>)}
         </ul>
         <pre><code>{JSON.stringify(this.props.searchResult)}</code></pre>
       </div>
@@ -32,7 +43,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  
+  getReport
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResult)

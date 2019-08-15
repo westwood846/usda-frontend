@@ -1,4 +1,4 @@
-import { SEARCH, SEARCH_FULFILLED, SEARCH_REJECTED } from "./actionTypes";
+import { SEARCH, SEARCH_FULFILLED, SEARCH_REJECTED, GET_REPORT, GET_REPORT_FULFILLED, GET_REPORT_REJECTED } from "./actionTypes";
 
 const initialState = {
 
@@ -15,9 +15,21 @@ export default (state = initialState, { type, payload }) => {
     console.log(type, payload)
     return { ...state, searchResult: payload, searching: false, searchQuery: undefined };
     
-    case SEARCH_REJECTED:
-      console.log(type, payload)
-      return { ...state, searchError: payload, searching: false, searchQuery: undefined };
+  case SEARCH_REJECTED:
+    console.log(type, payload)
+    return { ...state, searchError: payload, searching: false, searchQuery: undefined };
+
+  case GET_REPORT:
+    console.log(type, payload)
+    return { ...state, getReportNDBNO: payload, gettingReport: true, getReportResult: undefined, getReportError: undefined };
+
+  case GET_REPORT_FULFILLED:
+    console.log(type, payload)
+    return { ...state, getReportResult: payload, gettingReport: false, getReportNDBNO: undefined };
+    
+  case GET_REPORT_REJECTED:
+    console.log(type, payload)
+    return { ...state, getReportError: payload, gettingReport: false, getReportNDBNO: undefined };
 
   default:
     return state

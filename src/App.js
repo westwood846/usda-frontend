@@ -5,6 +5,7 @@ import './App.css';
 import './SearchBar';
 import SearchBar from './SearchBar';
 import SearchResult from './SearchResult';
+import Report from './Report';
 
 export class App extends Component {
   static propTypes = {
@@ -16,6 +17,7 @@ export class App extends Component {
       <div className="App">
         <SearchBar/>
         <SearchResult/>
+        <Report/>
       </div>
     )
   }
