@@ -1,8 +1,12 @@
 .App {
 }
 
-.SearchBar input {
+.SearchBar .queryInput {
   width: 300px;
+}
+
+.SearchBar .dataSourceInputLabel {
+  margin-right: 1rem;
 }
 
 .Breadcrumbs {
