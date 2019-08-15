@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Report from './Report';
-import { getReport } from './actions';
+import { getReport } from '../actions';
 import Breadcrumbs from './Breadcrumbs';
 import { get, isUndefined } from 'lodash';
 import { Link } from "react-router-dom";

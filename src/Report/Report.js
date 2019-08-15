@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sortNutrientsByGroup } from './usda';
+import { sortNutrientsByGroup } from '../usda';
 
 class Report extends Component {
   render() {

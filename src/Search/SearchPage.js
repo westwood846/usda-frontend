@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SearchResult from './SearchResult';
 import SearchBar from './SearchBar';
-import { search } from './actions';
+import { search } from '../actions';
 import { get } from 'lodash';
 
 class SearchPage extends Component {
