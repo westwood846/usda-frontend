@@ -15,10 +15,15 @@ class SearchResult extends Component {
   
   render() {
     let items = sortBy(this.props.result.list.item, 'name');
+    let query = this.props.result.list.q;
+    let ds = this.props.result.list.ds;
+    let start = this.props.result.list.start;
+    let end = Number(this.props.result.list.end) - 1;
+    let total = this.props.result.list.total;
 
     return (
       <div className="SearchResult">
-        <div>Result for "{this.props.result.list.q}" in "{this.props.result.list.ds}" ({this.props.result.list.start} to {this.props.result.list.end} of {this.props.result.list.total}):</div>
+        <div>Result for "{query}" in "{ds}" ({start} to {end} of {total}):</div>
         <ul>
           {items.map((item, index) => <li key={index}><button onClick={this.handleItemClick} value={item.ndbno}>{item.name}</button></li>)}
         </ul>
