@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { sortNutrientsByGroup } from './usda';
 
 class Report extends Component {
   render() {
+    let nutrients = sortNutrientsByGroup(this.props.report.nutrients);
+
     return (
       <div className="Report">
         <table>
@@ -15,7 +18,7 @@ class Report extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.report.nutrients.map((nutrient, index) => (
+            {nutrients.map((nutrient, index) => (
               <tr key={index}>
                 <td>{nutrient.nutrient_id}</td>
                 <td>{nutrient.name}</td>
