@@ -21,7 +21,7 @@ class Breadcrumbs extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  getReportResult: state.getReportResult
+  getReportResult: state.app.getReportResult
 })
 
 const mapDispatchToProps = {
