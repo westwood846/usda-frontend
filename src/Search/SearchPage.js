@@ -9,7 +9,7 @@ class SearchPage extends Component {
     super(props);
     let urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('dataSource')) {
-      this.props.setQuery(urlParams.get('dataSource' || 'BOTH'));
+      this.props.setQuery(urlParams.get('dataSource'));
     }
     if (urlParams.has('query')) {
       this.props.setQuery(urlParams.get('query'));

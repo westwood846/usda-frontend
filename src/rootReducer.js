@@ -5,7 +5,7 @@ import { connectRouter } from "connected-react-router";
 const initialState = {
   searching: false,
   searchQuery: '',
-  searchDataSource: 'BOTH'
+  searchDataSource: 'STANDARD_REFERENCE'
 }
 
 const appReducer = (state = initialState, { type, payload }) => {
