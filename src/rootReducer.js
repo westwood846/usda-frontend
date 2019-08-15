@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
 const initialState = {
-
+  searching: false
 }
 
 const appReducer = (state = initialState, { type, payload }) => {
