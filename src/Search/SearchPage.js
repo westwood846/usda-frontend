@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import SearchResult from './SearchResult';
 import SearchBar from './SearchBar';
 import { search } from '../actions';
-import { get } from 'lodash';
 
 class SearchPage extends Component {
   constructor(props) {
@@ -25,8 +24,6 @@ class SearchPage extends Component {
         : this.props.result
           ? <SearchResult result={this.props.result}/>
           : null
-
-    // <div>Result for "{this.props.searchResult.q}" in "{this.props.searchResult.ds}" ({this.props.searchResult.start} to {this.props.searchResult.end} of {this.props.searchResult.total}):</div>
 
     return (
       <div className="SearchPage">

@@ -15,7 +15,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="SearchBar">
-        <label>Search: <input type="text" value={this.props.searchQuery} onChange={this.handleInputChange}/></label>
+        <label>Search: <input type="text" value={this.props.searchQuery} onChange={this.handleInputChange} autoFocus/></label>
       </div>
     );
   }
