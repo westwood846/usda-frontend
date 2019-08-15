@@ -13,26 +13,27 @@ export class App extends Component {
 
   render() {
     return (
-      <Router>
+      // <Router>
         <div className="App">
           {/* <SearchBar/>
           <SearchResult/>
           <Report/> */}
           <Link to="/search/">Search</Link>
           <Link to="/report/123">Report</Link>
-          {/* <Switch> */}
+          <button onClick={() => console.log(this.props.state)}>Dump State</button>
+          <Switch>
             <Route path="/" exact component={SearchPage}/>
             <Route path="/search" component={SearchPage}/>
             <Route path="/report/:ndbno" component={ReportPage}/>
-          {/* </Switch> */}
+          </Switch>
         </div>
-      </Router>
+      // </Router>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  
+  state
 })
 
 const mapDispatchToProps = {

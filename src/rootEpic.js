@@ -27,7 +27,7 @@ const getReportEpic = action$ => action$.pipe(
   debounceTime(500),
   mergeMap(action =>
     ajax.getJSON(`https://api.nal.usda.gov/ndb/V2/reports?api_key=${USDA_API_KEY}&ndbno=${encodeURIComponent(action.payload)}`).pipe(
-      map(response => response.foods[0].error ? getReportRejected(response) : getReportFulfilled(response)),
+      map(response => response.foods[0].error ? getReportRejected(response) : getReportFulfilled(response.foods[0].food)),
       catchError(error => of({
         type: GET_REPORT_REJECTED,
         payload: error.xhr.response,

@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getReport } from './actions';
+import { push } from 'connected-react-router';
 
 class SearchResult extends Component {
   constructor(props) {
     super(props);
-  
     this.handleItemClick = this.handleItemClick.bind(this);
   }
   
   handleItemClick = (event) => {
-    this.props.getReport(event.target.value);
+    this.props.push(`/report/${event.target.value}`);
   }
   
   render() {
@@ -36,14 +36,15 @@ class SearchResult extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  searching: state.searching,
-  searchQuery: state.searchQuery,
-  searchResult: state.searchResult ? state.searchResult.list : undefined,
-  searchError: state.searchError
+  searching: state.app.searching,
+  searchQuery: state.app.searchQuery,
+  searchResult: state.app.searchResult ? state.app.searchResult.list : undefined,
+  searchError: state.app.searchError
 })
 
 const mapDispatchToProps = {
-  getReport
+  getReport,
+  push
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResult)

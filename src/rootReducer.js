@@ -1,10 +1,12 @@
 import { SEARCH, SEARCH_FULFILLED, SEARCH_REJECTED, GET_REPORT, GET_REPORT_FULFILLED, GET_REPORT_REJECTED } from "./actionTypes";
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
 
 const initialState = {
 
 }
 
-export default (state = initialState, { type, payload }) => {
+const appReducer = (state = initialState, { type, payload }) => {
   switch (type) {
 
   case SEARCH:
@@ -35,3 +37,8 @@ export default (state = initialState, { type, payload }) => {
     return state
   }
 }
+
+export default (history) => combineReducers({
+  router: connectRouter(history),
+  app: appReducer
+});

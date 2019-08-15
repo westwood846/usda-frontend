@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { search } from './actions';
 
 class SearchBar extends Component {
-  static propTypes = {
-    // prop: PropTypes
-  }
-
   constructor(props) {
     super(props);
-  
     this.state = {
        query: '',
     }
