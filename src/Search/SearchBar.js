@@ -27,7 +27,7 @@ class SearchBar extends Component {
         <label><input type="text" className="queryInput" value={this.props.searchQuery} onChange={this.handleInputChange} autoFocus/></label><br/>
         Data Source:&nbsp;
         {dataSourceIdentifiers.map(identifier => (
-          <label className="dataSourceInputLabel">
+          <label className="dataSourceInputLabel" key={identifier}>
             <input type="radio" className="dataSourceInput" value={identifier} checked={this.props.searchDataSource === identifier} onChange={this.handleDataSourceChange}></input>
             {decodeDataSourceIdentifier(identifier)}
           </label>

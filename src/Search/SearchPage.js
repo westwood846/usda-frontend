@@ -26,7 +26,7 @@ class SearchPage extends Component {
     let result = this.props.searching
       ? <span>Searching for "{this.props.query}" in {decodeDataSourceIdentifier(this.props.dataSource)}...</span>
       : this.props.error
-        ? <pre><code>{JSON.stringify(this.props.error, null, 2)}</code></pre>
+        ? this.props.error.errors.error.map((error, index) => <div key={index} style={{color: "red"}}>{error.message}</div>)
         : this.props.result
           ? <SearchResult result={this.props.result}/>
           : null
