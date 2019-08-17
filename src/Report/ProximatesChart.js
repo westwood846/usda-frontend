@@ -53,7 +53,7 @@ export default class ProximatesChart extends PureComponent {
       if (!sliceWideEnough(props)) return null;
 
       const RADIAN = Math.PI / 180;
-      const radius = 25 + innerRadius + (outerRadius - innerRadius);
+      const radius = 10 + innerRadius + (outerRadius - innerRadius);
       const x = cx + radius * Math.cos(-midAngle * RADIAN);
       const y = cy + radius * Math.sin(-midAngle * RADIAN);
       value = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 1 }).format(value);
