@@ -70,7 +70,6 @@ export default class ProximatesChart extends PureComponent {
     ]
     
     let legend = data01.map((entry, index) => ({value: entry.name, color: colors[index][0]}));
-    console.log(legend)
 
     return (
       <PieChart width={500} height={300}>
