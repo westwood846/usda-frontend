@@ -174,3 +174,11 @@ hr {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.input-range {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  width: 460px !important;
+}

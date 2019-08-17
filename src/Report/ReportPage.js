@@ -6,7 +6,8 @@ import Breadcrumbs from './Breadcrumbs';
 import { get, isUndefined } from 'lodash';
 import { Link } from "react-router-dom";
 import Analysis from './Analysis';
-import Logo from '../Logo';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
 class ReportPage extends Component {
   constructor(props) {
@@ -29,6 +30,12 @@ class ReportPage extends Component {
             </div>
             {this.props.loaded && <Breadcrumbs name={this.props.name}/>}
             <Link to="/search/" className="newSearchLink">&#8592; New Search</Link>
+            <InputRange
+              className="massInput"
+              minValue={0}
+              maxValue={1000}
+              value={100}
+              onChange={value => console.log(value)} />
           </div>
         </div>
         {this.props.loaded && <div className="ReportPage-container">
