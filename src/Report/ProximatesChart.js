@@ -11,23 +11,25 @@ export default class ProximatesChart extends PureComponent {
     let totalCarbs = getNutrientValue(this.props.report, 'Carbohydrate, by difference');
     let protein = getNutrientValue(this.props.report, 'Protein');
     let water = getNutrientValue(this.props.report, 'Water');
+    let other = 100 - (totalFat + totalCarbs + protein + water);
     
     const data01 = [
       { name: 'Total Fat', value: totalFat },
       { name: 'Total Carbohydrate', value: totalCarbs },
       { name: 'Protein', value: protein },
       { name: 'Water', value: water },
+      { name: 'Other', value: other },
     ];
-
+    
     let saturatedFats = getNutrientValue(this.props.report, 'Fatty acids, total saturated');
     let polySaturatedFats = getNutrientValue(this.props.report, 'Fatty acids, total polyunsaturated');
     let monoSaturatedFats = getNutrientValue(this.props.report, 'Fatty acids, total monounsaturated');
     let otherFats = totalFat - saturatedFats - polySaturatedFats - monoSaturatedFats;
-
+    
     let dietaryFiber = getNutrientValue(this.props.report, 'Fiber, total dietary')
     let sugar = getNutrientValue(this.props.report, 'Sugars, total')
     let otherCarbs = totalCarbs - dietaryFiber - sugar;
-
+    
     const data02 = [
       { name: 'Polyunsat. Fat', value: polySaturatedFats },
       { name: 'Monounsat. Fat', value: monoSaturatedFats },
@@ -38,6 +40,7 @@ export default class ProximatesChart extends PureComponent {
       { name: 'Other Carbohydrates', value: otherCarbs },
       { name: 'Protein', value: protein },
       { name: 'Water', value: water },
+      { name: 'Other', value: other },
     ];
 
     let sliceWideEnough = (props) => {
@@ -63,6 +66,7 @@ export default class ProximatesChart extends PureComponent {
       ['#aed581', '#8bc34a', '#689f38'],
       ['#f06292'],
       ['#2196f3'],
+      ['#e0e0e0'],
     ]
 
     return (
