@@ -170,9 +170,10 @@ hr {
 }
 
 .emoji-comparator {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
+  width: 100%;
 }
 
 .input-range {
@@ -181,4 +182,12 @@ hr {
   margin-left: .5rem;
   margin-right: .5rem;
   width: 460px !important;
+}
+
+.Comparator {
+  margin-top: 4rem;
+}
+
+.Comparator div:not(:last-child) {
+  margin-bottom: 1rem;;
 }
