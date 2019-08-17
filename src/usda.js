@@ -25,7 +25,7 @@ export const decodeDataSourceIdentifier = (identifier) => (dataSourceIdentifierL
 
 export const getNutrient = (food, name) => find(food.nutrients, {name});
 
-export const getNutrientValue = (food, name) => Number(getNutrient(food, name).value);
+export const getNutrientValue = (food, name) => Number(getNutrient(food, name) ? getNutrient(food, name).value : undefined);
 
 export const referenceIntake = {
   "Energy": 2000,
