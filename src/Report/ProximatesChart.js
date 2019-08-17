@@ -29,10 +29,10 @@ export default class ProximatesChart extends PureComponent {
     let otherCarbs = totalCarbs - dietaryFiber - sugar;
 
     const data02 = [
+      { name: 'Polyunsat. Fat', value: polySaturatedFats },
+      { name: 'Monounsat. Fat', value: monoSaturatedFats },
+      { name: 'Saturated Fat', value: saturatedFats },
       { name: 'Other Fats', value: otherFats },
-      { name: 'Monounsaturated fat', value: monoSaturatedFats },
-      { name: 'Polyunsaturated fat', value: polySaturatedFats },
-      { name: 'Saturated fat', value: saturatedFats },
       { name: 'Dietary Fiber', value: dietaryFiber },
       { name: 'Sugar', value: sugar },
       { name: 'Other Carbohydrates', value: otherCarbs },
@@ -55,7 +55,7 @@ export default class ProximatesChart extends PureComponent {
       const y = cy + radius * Math.sin(-midAngle * RADIAN);
       value = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 1 }).format(value);
 
-      return <text x={x} y={y} fill={fill} textAnchor={x > cx ? "start" : "end"} dominantBaseline="central">{data02[index].name} {value}</text>;
+      return <text x={x} y={y} fill={fill} textAnchor={x > cx ? "start" : "end"} dominantBaseline="central">{data02[index].name} {value} g</text>;
     }
 
     let colors = [
@@ -68,10 +68,10 @@ export default class ProximatesChart extends PureComponent {
     return (
       <PieChart width={500} height={300}>
         <Pie data={data01} dataKey="value" cx={250} cy={150} outerRadius={60} fill="#8884d8">{
-          data01.map((entry, index) => <Cell key={``} fill={colors[index][0]} />)
+          data01.map((entry, index) => <Cell key={index} fill={colors[index][0]} />)
         }</Pie>
         <Pie data={data02} dataKey="value" cx={250} cy={150} innerRadius={70} outerRadius={90} fill="red" labelLine={false} label={label}>{
-          data02.map((entry, index) => <Cell key={``} fill={flatten(colors)[index]} />)
+          data02.map((entry, index) => <Cell key={`index`} fill={flatten(colors)[index]} />)
         }</Pie>
       </PieChart>
     );
