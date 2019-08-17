@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ProximatesChart from './ProximatesChart';
 
 class Analysis extends Component {
   render() {
     return (
       <div className="Analysis">
+        <ProximatesChart/>
         <pre><code>{JSON.stringify(this.props.report, null, 2)}</code></pre>
       </div>
     )
