@@ -72,11 +72,11 @@ export default class ProximatesChart extends PureComponent {
     let legend = data01.map((entry, index) => ({value: entry.name, color: colors[index][0]}));
 
     return (
-      <PieChart width={500} height={300}>
-        <Pie data={data01} dataKey="value" cx={250} cy={150} innerRadius={30} outerRadius={60} fill="#8884d8" isAnimationActive={false}>{
+      <PieChart width={500} height={275}>
+        <Pie data={data01} dataKey="value" cx={250} cy={125} innerRadius={30} outerRadius={60} fill="#8884d8" isAnimationActive={false}>{
           data01.map((entry, index) => <Cell key={index} fill={colors[index][0]} />)
         }</Pie>
-        <Pie data={data02} dataKey="value" cx={250} cy={150} innerRadius={70} outerRadius={90} fill="red" labelLine={false} label={label} isAnimationActive={false}>
+        <Pie data={data02} dataKey="value" cx={250} cy={125} innerRadius={70} outerRadius={90} fill="red" labelLine={false} label={label} isAnimationActive={false}>
           {data02.map((entry, index) => <Cell key={`index`} fill={flatten(colors)[index]} />)}
           <Label value={`${this.props.mass} g`} position="center"/>
         </Pie>
