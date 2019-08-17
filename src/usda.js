@@ -1,4 +1,4 @@
-import { groupBy } from 'lodash';
+import { groupBy, find } from 'lodash';
 
 
 export const groupOrder = ['Proximates', 'Vitamins', 'Minerals', 'Lipids', 'Other'];
@@ -21,4 +21,18 @@ export const dataSourceIdentifierLookup = {
 
 export const dataSourceIdentifiers = Object.keys(dataSourceIdentifierLookup);
 
-export const decodeDataSourceIdentifier = (identifier) => (dataSourceIdentifierLookup[identifier])
+export const decodeDataSourceIdentifier = (identifier) => (dataSourceIdentifierLookup[identifier]);
+
+export const getNutrient = (food, name) => find(food.nutrients, {name});
+
+export const referenceIntake = {
+  "Energy": 2000,
+  "Total lipid (fat)": 67,
+  "Fatty acids, total saturated": 20,
+  "Cholesterol": 300,
+  "Sodium, Na": 2400,
+  "Potassium, K": 3533,
+  "Carbohydrate, by difference": 300,
+  "Fiber, total dietary": 25,
+  "Protein": 50
+}

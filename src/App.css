@@ -5,6 +5,7 @@ a {
 
 .App {
   font-family: 'Roboto', sans-serif;
+  color: #222;
 }
 
 .Logo h1 {
@@ -124,4 +125,30 @@ hr {
 
 .NutrientTable {
   margin-left: 2rem;
+}
+
+.indent-2 {
+  text-indent: 2rem;
+}
+
+.nutTable-right {
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.nutTable-left {
+  padding-left: 1rem;
+}
+
+.nutTable {
+  border: 2px solid #eaeaea;
+  margin-left: 2rem;
+  border-collapse: collapse;
+  width: 30rem;
+}
+
+.nutTable td {
+  border-top: 1px solid #eaeaea;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 }
