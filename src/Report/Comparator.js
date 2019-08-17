@@ -13,17 +13,17 @@ class Comparator extends Component {
     
     return (
       <div className="Comparator">
-        <div>
-          {this.props.calories} kcal equal...
+        <div className="Comparator-header">
+          <h2>{this.props.calories} kcal</h2><br/>equal
         </div>
         <div className="emoji-comparator">
-          {times(bananas, n => '🍌')} {bananas}&nbsp;Medium&nbsp;Bananas&nbsp;(118g)
+          {times(bananas, n => '🍌')}<br/>{bananas} Medium Bananas (118g)
         </div>
         <div className="emoji-comparator">
-          {times(bread, n => '🍞')} {bread}&nbsp;Slices&nbsp;of&nbsp;White&nbsp;Bread&nbsp;(28g)
+          {times(bread, n => '🍞')}<br/>{bread} Slices of White Bread (28g)
         </div>
         <div className="emoji-comparator">
-          {times(bubbleTeas, n => '🍹')} {bubbleTeas}&nbsp;Cups&nbsp;of&nbsp;Bubble&nbsp;Tea&nbsp;
+          {times(bubbleTeas, n => '🍹')}<br/>{bubbleTeas} Cups of Bubble Tea 
         </div>
       </div>
     )
