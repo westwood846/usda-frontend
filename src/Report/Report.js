@@ -77,7 +77,6 @@ class Report extends Component {
       <div className="Report">
         <table className="nutTable">
           <tbody>
-            <tr><td>{this.props.mass}</td></tr>
             {this.tableRows.map((row, index) => this.tableRow(index, row.key, row.label, row.main))}
           </tbody>
         </table>
