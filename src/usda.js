@@ -32,11 +32,21 @@ export const referenceIntake = {
   "Total lipid (fat)": 67,
   "Fatty acids, total saturated": 20,
   "Cholesterol": 300,
-  "Sodium, Na": 2400,
-  "Potassium, K": 3533,
   "Carbohydrate, by difference": 300,
   "Fiber, total dietary": 25,
-  "Protein": 50
+  "Protein": 50,
+  "Vitamin C, total ascorbic acid": 60,
+  "Vitamin B-6": 1.2,
+  "Vitamin B-12": 6,
+  "Vitamin E (alpha-tocopherol)": 15,
+  "Vitamin K (phylloquinone)": 120,
+  "Calcium, Ca": 1000,
+  "Iron, Fe": 19,
+  "Magnesium, Mg": 420,
+  "Phosphorus, P": 700,
+  "Sodium, Na": 2400,
+  "Potassium, K": 3533,
+  "Zinc, Zn": 8,
 }
 
 export const labels = {
