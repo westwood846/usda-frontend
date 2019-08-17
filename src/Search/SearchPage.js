@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SearchResult from './SearchResult';
 import SearchBar from './SearchBar';
-import { setQuery, search } from '../actions';
+import { setQuery, setDataSource, search } from '../actions';
 import Logo from '../Logo';
 import { decodeDataSourceIdentifier } from '../usda';
 
@@ -10,12 +10,14 @@ class SearchPage extends Component {
   constructor(props) {
     super(props);
     let urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('dataSource')) {
-      this.props.setQuery(urlParams.get('dataSource'));
+    if (urlParams.has('dataSource') && urlParams.get('dataSource') !== this.props.dataSource) {
+      this.props.setDataSource(urlParams.get('dataSource'));
     }
     if (urlParams.has('query')) {
-      this.props.setQuery(urlParams.get('query'));
-      this.props.search();
+      if (urlParams.get('query') !== this.props.query) {
+        this.props.setQuery(urlParams.get('query'));
+        this.props.search();
+      }
     } else {
       this.props.setQuery('');
     }
@@ -57,6 +59,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   setQuery,
+  setDataSource,
   search
 }
 
