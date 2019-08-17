@@ -41,7 +41,6 @@ export default class ProximatesChart extends PureComponent {
     ];
 
     let label = (props) => {
-      console.log(props)
       let { cx, cy, midAngle, innerRadius, outerRadius, value, index, fill } = props;
       const RADIAN = Math.PI / 180;
       const radius = 25 + innerRadius + (outerRadius - innerRadius);
@@ -62,11 +61,11 @@ export default class ProximatesChart extends PureComponent {
     ]
 
     return (
-      <PieChart width={500} height={400}>
-        <Pie data={data01} dataKey="value" cx={250} cy={200} outerRadius={60} fill="#8884d8">{
+      <PieChart width={500} height={300}>
+        <Pie data={data01} dataKey="value" cx={250} cy={150} outerRadius={60} fill="#8884d8">{
           data01.map((entry, index) => <Cell key={``} fill={colors[index][0]} />)
         }</Pie>
-        <Pie data={data02} dataKey="value" cx={250} cy={200} innerRadius={70} outerRadius={90} fill="red" label={label}>{
+        <Pie data={data02} dataKey="value" cx={250} cy={150} innerRadius={70} outerRadius={90} fill="red" label={label}>{
           data02.map((entry, index) => <Cell key={``} fill={flatten(colors)[index]} />)
         }</Pie>
       </PieChart>
