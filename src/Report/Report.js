@@ -54,7 +54,7 @@ class Report extends Component {
   }
 
   tableRows = [
-    {label: "Energy",              key: "Calories",                           main: true},
+    {label: "Calories",            key: "Energy",                           main: true},
     {label: "Total Fat",           key: "Total lipid (fat)",                  main: true},
     {label: "Saturated fat",       key: "Fatty acids, total saturated",       main: false},
     {label: "Polyunsaturated fat", key: "Fatty acids, total polyunsaturated", main: false},
