@@ -24,7 +24,7 @@ class SearchResult extends Component {
 
     return (
       <div className="SearchResult">
-        <div className="SearchResult-descriptor">Result for "{query}" in "{ds}" ({start} to {end} of {total}):</div>
+        <div className="descriptor">Result for "{query}" in "{ds}" ({start} to {end} of {total}):</div>
         <ul>
           {items.map((item, index) => <li key={index}><SearchResultItem item={item}></SearchResultItem></li>)}
         </ul>

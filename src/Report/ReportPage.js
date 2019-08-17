@@ -6,6 +6,7 @@ import Breadcrumbs from './Breadcrumbs';
 import { get, isUndefined } from 'lodash';
 import { Link } from "react-router-dom";
 import Analysis from './Analysis';
+import Logo from '../Logo';
 
 class ReportPage extends Component {
   constructor(props) {
@@ -18,12 +19,18 @@ class ReportPage extends Component {
   render() {
     return (
       <div className="ReportPage">
-        <Link to="/search/">&#8592; New Search</Link>
-        <h1>
-          {this.props.loaded ? `${this.props.name}` : `Loading report for ndbno ${this.urlNDBNO}`}<br/>
-          {this.props.loaded && <small>{[this.props.ds, this.props.manu, this.props.ndbno].filter(e=>e).join(" · ")}</small>}
-        </h1>
-        {this.props.loaded && <Breadcrumbs name={this.props.name}/>}
+        <div className="header">
+          <div>
+            <h1>
+              {this.props.loaded ? `${this.props.name}` : `Loading report for ndbno ${this.urlNDBNO}`}<br/>
+            </h1>
+            <div className="descriptor">
+              {this.props.loaded && <small>{[this.props.ds, this.props.manu, this.props.ndbno].filter(e=>e).join(" · ")}</small>}
+            </div>
+            {this.props.loaded && <Breadcrumbs name={this.props.name}/>}
+            <Link to="/search/" className="newSearchLink">&#8592; New Search</Link>
+          </div>
+        </div>
         {this.props.loaded && <div className="ReportPage-container">
           <div className="ReportPage-report">
             <Report report={this.props.report}/>
