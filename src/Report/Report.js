@@ -11,7 +11,7 @@ class Report extends Component {
   }
 
   reference = (key) => {
-    return `${Math.round(getNutrient(this.props.report, key).value / referenceIntake[key] * 100)} %`;
+    return referenceIntake[key] ? `${Math.round(getNutrient(this.props.report, key).value / referenceIntake[key] * 100)} %` : null;
   }
 
   tableRow = (index, key, label, main=false) => {
