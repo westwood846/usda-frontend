@@ -31,15 +31,19 @@ class Report extends Component {
               <td className="nutTable-right">{this.reference('Total lipid (fat)')}</td>
             </tr>
             <tr>
-              <td className="nutTable-left" className="indent-2">Saturated fat {this.datum('Fatty acids, total saturated')}</td>
+              <td className="nutTable-left indent-2">Saturated fat {this.datum('Fatty acids, total saturated')}</td>
               <td className="nutTable-right">{this.reference('Fatty acids, total saturated')}</td>
             </tr>
             <tr>
-              <td className="nutTable-left" className="indent-2">Polyunsaturated fat {this.datum('Fatty acids, total polyunsaturated')}</td>
+              <td className="nutTable-left indent-2">Polyunsaturated fat {this.datum('Fatty acids, total polyunsaturated')}</td>
               <td className="nutTable-right"></td>
             </tr>
             <tr>
-              <td className="nutTable-left" className="indent-2">Monounsaturated fat {this.datum('Fatty acids, total monounsaturated')}</td>
+              <td className="nutTable-left indent-2">Monounsaturated fat {this.datum('Fatty acids, total monounsaturated')}</td>
+              <td className="nutTable-right"></td>
+            </tr>
+            <tr>
+              <td className="nutTable-left"><strong>Water </strong>{this.datum('Water')}</td>
               <td className="nutTable-right"></td>
             </tr>
             <tr>

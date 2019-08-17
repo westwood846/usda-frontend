@@ -13,7 +13,7 @@ class Analysis extends Component {
 
     return (
       <div className="Analysis">
-        <ProximatesChart/>
+        <ProximatesChart report={this.props.report}/>
         <pre><code>{JSON.stringify(this.props.report, null, 2)}</code></pre>
         <div>
           {calories.value} {calories.unit} equal...
