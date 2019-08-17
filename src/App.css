@@ -101,12 +101,20 @@ a {
 .ReportPage-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .ReportPage-report,.ReportPage-analysis {
   /* border: 1px solid black; */
+}
+
+.Analysis {
+  width: 30rem;
+  margin-left: 2rem;
+}
+
+.ReportPage-analysis {
+  margin-left: 2rem;
 }
 
 hr {
@@ -151,4 +159,10 @@ hr {
   border-top: 1px solid #eaeaea;
   padding-top: .5rem;
   padding-bottom: .5rem;
+}
+
+.emoji-comparator {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
