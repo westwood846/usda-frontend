@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sortNutrientsByGroup, groupByNutrientGroup, getNutrient, referenceIntake } from '../usda';
+import { sortNutrientsByGroup, groupByNutrientGroup, getNutrient, referenceIntake, labels } from '../usda';
 import { NutrientTable } from './NutrientsTable';
+import { chunk } from 'lodash';
 
 class Report extends Component {
   datum = (key, precision=0) => {
@@ -14,17 +15,43 @@ class Report extends Component {
     return referenceIntake[key] ? `${Math.round(getNutrient(this.props.report, key).value / referenceIntake[key] * 100)} %` : null;
   }
 
-  tableRow = (index, key, label, main=false) => {
+  datumCell = (key, label=key, main) => <td className={`nutTable-left ${!main && 'indent-2'}`}>{main ? (<strong>{label} </strong>) : label+" "}{this.datum(key)}</td>;
+  referenceCell = (key) => <td className="nutTable-right">{this.reference(key)}</td>;
+
+  tableRow = (index, key, label=key, main=false) => {
     if (getNutrient(this.props.report, key)) {
       return (
         <tr key={index}>
-          <td className={`nutTable-left ${!main && 'indent-2'}`}>{main ? (<strong>{label} </strong>) : label+" "}{this.datum(key)}</td>
-          <td className="nutTable-right">{this.reference(key)}</td>
+          {this.datumCell(key, label, main)}
+          {this.referenceCell(key)}
         </tr>
       )
     } else {
       return null;
     }
+  }
+
+  doubleTable = (nutrients) => {
+    let datumCells = nutrients.map((nutrient) => this.datumCell(nutrient.name, labels[nutrient.name], true));
+    let referenceCells = nutrients.map((nutrient) => this.referenceCell(nutrient.name));
+
+    let datumCellChucks = chunk(datumCells, 2);
+    let referenceCellChucks = chunk(referenceCells, 2);
+
+    return (
+      <table className="nutTable">
+        <tbody>
+          {datumCellChucks.map((datumCellChunk, index) => (
+            <tr key={index}>
+              {datumCellChucks[index][0]}
+              {referenceCellChucks[index][0]}
+              {datumCellChucks[index][1] || <td className="nutTable-left"></td>}
+              {referenceCellChucks[index][1] || <td className="nutTable-right"></td>}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
   }
 
   tableRows = [
@@ -54,6 +81,9 @@ class Report extends Component {
             {this.tableRows.map((row, index) => this.tableRow(index, row.key, row.label, row.main))}
           </tbody>
         </table>
+        {nutrientGroups["Vitamins"] && this.doubleTable(nutrientGroups["Vitamins"])}
+        {nutrientGroups["Minerals"] && this.doubleTable(nutrientGroups["Minerals"])}
+        {nutrientGroups["Other"] && this.doubleTable(nutrientGroups["Other"])}
         {Object.keys(nutrientGroups).map((groupKey, index) => <NutrientTable nutrients={nutrientGroups[groupKey]} name={groupKey} key={index}/>)}
       </div>
     )

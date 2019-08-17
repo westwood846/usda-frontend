@@ -38,3 +38,19 @@ export const referenceIntake = {
   "Fiber, total dietary": 25,
   "Protein": 50
 }
+
+export const labels = {
+  "Vitamin C, total ascorbic acid": "Vitamin C",
+  "Vitamin B-6":                    "Vitamin B6",
+  "Vitamin B-12":                   "Vitamin B12",
+  "Vitamin E (alpha-tocopherol)":   "Vitamin E",
+  "Vitamin K (phylloquinone)":      "Vitamin E",
+  "Calcium, Ca":                    "Calcium",
+  "Iron, Fe":                       "Iron",
+  "Magnesium, Mg":                  "Magnesium",
+  "Phosphorus, P":                  "Phosphorus",
+  "Potassium, K":                   "Potassium",
+  "Sodium, Na":                     "Sodium",
+  "Zinc, Zn":                       "Zinc",
+  
+}
