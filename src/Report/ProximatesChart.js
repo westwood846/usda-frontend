@@ -15,7 +15,7 @@ export default class ProximatesChart extends PureComponent {
     
     const data01 = [
       { name: 'Total Fat', value: totalFat },
-      { name: 'Total Carbohydrate', value: totalCarbs },
+      { name: 'Total Carbs', value: totalCarbs },
       { name: 'Protein', value: protein },
       { name: 'Water', value: water },
       { name: 'Other', value: other },
@@ -37,7 +37,7 @@ export default class ProximatesChart extends PureComponent {
       { name: 'Other Fats', value: otherFats },
       { name: 'Dietary Fiber', value: dietaryFiber },
       { name: 'Sugar', value: sugar },
-      { name: 'Other Carbohydrates', value: otherCarbs },
+      { name: 'Other Carbs', value: otherCarbs },
       { name: 'Protein', value: protein },
       { name: 'Water', value: water },
       { name: 'Other', value: other },
