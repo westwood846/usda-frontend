@@ -12,3 +12,13 @@ export const compareNutrients = (a, b) => {
 }
 
 export const groupByNutrientGroup = (nutrients) => groupBy(nutrients, 'group');
+
+export const dataSourceIdentifierLookup = {
+  BOTH: "Any",
+  STANDARD_REFERENCE: "Standard Reference",
+  BRANDED_FOOD_PRODUCTS: "Branded Food Products",
+}
+
+export const dataSourceIdentifiers = Object.keys(dataSourceIdentifierLookup);
+
+export const decodeDataSourceIdentifier = (identifier) => (dataSourceIdentifierLookup[identifier])

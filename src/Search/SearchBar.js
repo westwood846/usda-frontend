@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setQuery, setDataSource, search } from '../actions';
+import { dataSourceIdentifiers, decodeDataSourceIdentifier } from '../usda';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -20,13 +21,17 @@ class SearchBar extends Component {
   }
 
   render() {
+
     return (
       <div className="SearchBar">
         <label><input type="text" className="queryInput" value={this.props.searchQuery} onChange={this.handleInputChange} autoFocus/></label><br/>
         Data Source:&nbsp;
-        <label className="dataSourceInputLabel"><input type="radio" className="dataSourceInput" value="BOTH" checked={this.props.searchDataSource === 'BOTH'} onChange={this.handleDataSourceChange}></input>Both</label>
-        <label className="dataSourceInputLabel"><input type="radio" className="dataSourceInput" value="STANDARD_REFERENCE" checked={this.props.searchDataSource === 'STANDARD_REFERENCE'} onChange={this.handleDataSourceChange}></input>Standard Reference</label>
-        <label className="dataSourceInputLabel"><input type="radio" className="dataSourceInput" value="BRANDED_FOOD_PRODUCTS" checked={this.props.searchDataSource === 'BRANDED_FOOD_PRODUCTS'} onChange={this.handleDataSourceChange}></input>Branded Food Products</label>
+        {dataSourceIdentifiers.map(identifier => (
+          <label className="dataSourceInputLabel">
+            <input type="radio" className="dataSourceInput" value={identifier} checked={this.props.searchDataSource === identifier} onChange={this.handleDataSourceChange}></input>
+            {decodeDataSourceIdentifier(identifier)}
+          </label>
+        ))}
       </div>
     );
   }

@@ -4,6 +4,7 @@ import SearchResult from './SearchResult';
 import SearchBar from './SearchBar';
 import { setQuery, search } from '../actions';
 import Logo from '../Logo';
+import { decodeDataSourceIdentifier } from '../usda';
 
 class SearchPage extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class SearchPage extends Component {
 
   render() {
     let result = this.props.searching
-      ? <span>Searching for "{this.props.query}"...</span>
+      ? <span>Searching for "{this.props.query}" in {decodeDataSourceIdentifier(this.props.dataSource)}...</span>
       : this.props.error
         ? <pre><code>{JSON.stringify(this.props.error, null, 2)}</code></pre>
         : this.props.result
@@ -48,6 +49,7 @@ class SearchPage extends Component {
 const mapStateToProps = (state) => ({
   searching: state.app.searching,
   query: state.app.searchQuery,
+  dataSource: state.app.searchDataSource,
   result: state.app.searchResult,
   // items: get(state.app.searchResult, 'list.item'),
   error: state.app.searchError
