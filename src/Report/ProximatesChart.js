@@ -56,7 +56,7 @@ export default class ProximatesChart extends PureComponent {
       const radius = 25 + innerRadius + (outerRadius - innerRadius);
       const x = cx + radius * Math.cos(-midAngle * RADIAN);
       const y = cy + radius * Math.sin(-midAngle * RADIAN);
-      value = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 1 }).format(value);
+      value = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 1 }).format(value);
 
       return <text x={x} y={y} fill={fill} textAnchor={x > cx ? "start" : "end"} dominantBaseline="central">{data02[index].name} {value} g</text>;
     }
