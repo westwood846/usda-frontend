@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { sortNutrientsByGroup, groupByNutrientGroup, getNutrient, referenceIntake, labels } from '../usda';
-import { NutrientTable } from './NutrientsTable';
 import { chunk } from 'lodash';
 
 class Report extends Component {
@@ -85,7 +84,6 @@ class Report extends Component {
         {nutrientGroups["Vitamins"] && this.doubleTable(nutrientGroups["Vitamins"])}
         {nutrientGroups["Minerals"] && this.doubleTable(nutrientGroups["Minerals"])}
         {nutrientGroups["Other"] && this.doubleTable(nutrientGroups["Other"])}
-        {Object.keys(nutrientGroups).map((groupKey, index) => <NutrientTable nutrients={nutrientGroups[groupKey]} name={groupKey} key={index}/>)}
       </div>
     )
   }
