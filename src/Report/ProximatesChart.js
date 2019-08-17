@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { PieChart, Pie, Cell, Label } from 'recharts';
+import { PieChart, Pie, Cell, Label, Legend } from 'recharts';
 import { getNutrientValue } from '../usda';
 import { flatten } from 'lodash';
 
@@ -68,6 +68,9 @@ export default class ProximatesChart extends PureComponent {
       ['#2196f3'],
       ['#e0e0e0'],
     ]
+    
+    let legend = data01.map((entry, index) => ({value: entry.name, color: colors[index][0]}));
+    console.log(legend)
 
     return (
       <PieChart width={500} height={300}>
@@ -78,6 +81,7 @@ export default class ProximatesChart extends PureComponent {
           {data02.map((entry, index) => <Cell key={`index`} fill={flatten(colors)[index]} />)}
           <Label value={`${this.props.mass} g`} position="center"/>
         </Pie>
+        <Legend payload={legend}/>
       </PieChart>
     );
   }
