@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Report from './Report';
-import { getReport } from '../actions';
+import { getReport, setMass } from '../actions';
 import Breadcrumbs from './Breadcrumbs';
 import { get, isUndefined } from 'lodash';
 import { Link } from "react-router-dom";
@@ -15,7 +15,6 @@ class ReportPage extends Component {
     this.urlNDBNO = this.props.match.params.ndbno;
     this.props.getReport(this.urlNDBNO);
   }
-
 
   render() {
     return (
@@ -34,8 +33,8 @@ class ReportPage extends Component {
               className="massInput"
               minValue={0}
               maxValue={1000}
-              value={100}
-              onChange={value => console.log(value)} />
+              value={this.props.mass}
+              onChange={this.props.setMass} />
           </div>
         </div>
         {this.props.loaded && <div className="ReportPage-container">
@@ -58,10 +57,12 @@ const mapStateToProps = (state) => ({
   ds: get(state.app.getReportResult, 'desc.ds'),
   manu: get(state.app.getReportResult, 'desc.manu'),
   ndbno: get(state.app.getReportResult, 'desc.ndbno'),
+  mass: state.app.mass
 })
 
 const mapDispatchToProps = {
-  getReport
+  getReport,
+  setMass
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReportPage)

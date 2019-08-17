@@ -1,11 +1,12 @@
-import { SEARCH, SEARCH_FULFILLED, SEARCH_REJECTED, GET_REPORT, GET_REPORT_FULFILLED, GET_REPORT_REJECTED, SET_QUERY, SET_DATA_SOURCE } from "./actionTypes";
+import { SEARCH, SEARCH_FULFILLED, SEARCH_REJECTED, GET_REPORT, GET_REPORT_FULFILLED, GET_REPORT_REJECTED, SET_QUERY, SET_DATA_SOURCE, SET_MASS } from "./actionTypes";
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
 const initialState = {
   searching: false,
   searchQuery: '',
-  searchDataSource: 'STANDARD_REFERENCE'
+  searchDataSource: 'STANDARD_REFERENCE',
+  mass: 100
 }
 
 const appReducer = (state = initialState, { type, payload }) => {
@@ -39,6 +40,9 @@ const appReducer = (state = initialState, { type, payload }) => {
     
   case GET_REPORT_REJECTED:
     return { ...state, getReportError: payload, gettingReport: false, getReportNDBNO: undefined };
+    
+  case SET_MASS:
+    return { ...state, mass: payload };
 
   default:
     return state
