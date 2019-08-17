@@ -28,9 +28,9 @@ class ReportPage extends Component {
           <div className="ReportPage-report">
             <Report report={this.props.report}/>
           </div>
-          <div className="ReportPage-analysis">
+          {/* <div className="ReportPage-analysis">
             <Analysis report={this.props.report}/>
-          </div>
+          </div> */}
         </div>}
       </div>
     );
