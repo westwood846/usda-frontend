@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import SearchResult from './SearchResult';
 import SearchBar from './SearchBar';
 import { setQuery, search } from '../actions';
+import Logo from '../Logo';
 
 class SearchPage extends Component {
   constructor(props) {
@@ -31,9 +32,14 @@ class SearchPage extends Component {
 
     return (
       <div className="SearchPage">
-        <h1>Search USDA API</h1>
-        <SearchBar/>
-        {result}
+        <div className="header">
+          <Logo/>
+          <SearchBar/>
+        </div>
+        <hr/>
+        <div className="ResultContainer">
+          {result}
+        </div>
       </div>
     )
   }

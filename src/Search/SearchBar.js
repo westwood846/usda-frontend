@@ -22,7 +22,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="SearchBar">
-        <label>Search: <input type="text" className="queryInput" value={this.props.searchQuery} onChange={this.handleInputChange} autoFocus/></label><br/>
+        <label><input type="text" className="queryInput" value={this.props.searchQuery} onChange={this.handleInputChange} autoFocus/></label><br/>
         Data Source:&nbsp;
         <label className="dataSourceInputLabel"><input type="radio" className="dataSourceInput" value="BOTH" checked={this.props.searchDataSource === 'BOTH'} onChange={this.handleDataSourceChange}></input>Both</label>
         <label className="dataSourceInputLabel"><input type="radio" className="dataSourceInput" value="STANDARD_REFERENCE" checked={this.props.searchDataSource === 'STANDARD_REFERENCE'} onChange={this.handleDataSourceChange}></input>Standard Reference</label>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router';
 import { sortBy } from 'lodash';
+import SearchResultItem from './SearchResultItem';
 
 class SearchResult extends Component {
   constructor(props) {
@@ -17,15 +18,15 @@ class SearchResult extends Component {
     let items = sortBy(this.props.result.list.item, 'name');
     let query = this.props.result.list.q;
     let ds = this.props.result.list.ds;
-    let start = this.props.result.list.start;
-    let end = Number(this.props.result.list.end) - 1;
+    let start = this.props.result.list.start + 1;
+    let end = Number(this.props.result.list.end);
     let total = this.props.result.list.total;
 
     return (
       <div className="SearchResult">
-        <div>Result for "{query}" in "{ds}" ({start} to {end} of {total}):</div>
+        <div className="SearchResult-descriptor">Result for "{query}" in "{ds}" ({start} to {end} of {total}):</div>
         <ul>
-          {items.map((item, index) => <li key={index}><button onClick={this.handleItemClick} value={item.ndbno}>{item.name}</button></li>)}
+          {items.map((item, index) => <li key={index}><SearchResultItem item={item}></SearchResultItem></li>)}
         </ul>
       </div>
     )
