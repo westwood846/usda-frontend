@@ -13,7 +13,7 @@ class Analysis extends Component {
 
     return (
       <div className="Analysis">
-        <ProximatesChart report={this.props.report} mass={100}/>
+        <ProximatesChart report={this.props.report} mass={this.props.mass}/>
         <pre><code>{JSON.stringify(this.props.report, null, 2)}</code></pre>
         <div>
           {calories.value} {calories.unit} equal...
@@ -30,7 +30,7 @@ class Analysis extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  
+  mass: state.app.mass
 })
 
 const mapDispatchToProps = {

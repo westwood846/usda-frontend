@@ -8,11 +8,11 @@ class Report extends Component {
   datum = (key, precision=0) => {
     let nutrient = getNutrient(this.props.report, key);
     if (!nutrient) return null;
-    return `${Number(nutrient.value).toFixed(precision)} ${nutrient.unit}`;
+    return `${Number(nutrient.value * this.props.factor).toFixed(precision)} ${nutrient.unit}`;
   }
 
   reference = (key) => {
-    return referenceIntake[key] ? `${Math.round(getNutrient(this.props.report, key).value / referenceIntake[key] * 100)} %` : null;
+    return referenceIntake[key] ? `${Math.round(getNutrient(this.props.report, key).value * this.props.factor / referenceIntake[key] * 100)} %` : null;
   }
 
   datumCell = (key, label=key, main) => <td className={`nutTable-left ${!main && 'indent-2'}`}>{main ? (<strong>{label} </strong>) : label+" "}{this.datum(key)}</td>;
@@ -78,6 +78,7 @@ class Report extends Component {
       <div className="Report">
         <table className="nutTable">
           <tbody>
+            <tr><td>{this.props.mass}</td></tr>
             {this.tableRows.map((row, index) => this.tableRow(index, row.key, row.label, row.main))}
           </tbody>
         </table>
@@ -91,6 +92,8 @@ class Report extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  mass: state.app.mass,
+  factor: state.app.mass / 100,
 })
 
 const mapDispatchToProps = {

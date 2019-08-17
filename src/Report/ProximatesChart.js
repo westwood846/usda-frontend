@@ -4,14 +4,14 @@ import { getNutrientValue } from '../usda';
 import { flatten } from 'lodash';
 
 export default class ProximatesChart extends PureComponent {
-  getValue
+  getValue = (key) => getNutrientValue(this.props.report, key) * this.props.mass / 100;
 
   render() {
-    let totalFat = getNutrientValue(this.props.report, 'Total lipid (fat)');
-    let totalCarbs = getNutrientValue(this.props.report, 'Carbohydrate, by difference');
-    let protein = getNutrientValue(this.props.report, 'Protein');
-    let water = getNutrientValue(this.props.report, 'Water');
-    let other = 100 - (totalFat + totalCarbs + protein + water);
+    let totalFat = this.getValue('Total lipid (fat)');
+    let totalCarbs = this.getValue('Carbohydrate, by difference');
+    let protein = this.getValue('Protein');
+    let water = this.getValue('Water');
+    let other = this.props.mass - (totalFat + totalCarbs + protein + water);
     
     const data01 = [
       { name: 'Total Fat', value: totalFat },
@@ -21,13 +21,13 @@ export default class ProximatesChart extends PureComponent {
       { name: 'Other', value: other },
     ];
     
-    let saturatedFats = getNutrientValue(this.props.report, 'Fatty acids, total saturated');
-    let polySaturatedFats = getNutrientValue(this.props.report, 'Fatty acids, total polyunsaturated');
-    let monoSaturatedFats = getNutrientValue(this.props.report, 'Fatty acids, total monounsaturated');
+    let saturatedFats = this.getValue('Fatty acids, total saturated');
+    let polySaturatedFats = this.getValue('Fatty acids, total polyunsaturated');
+    let monoSaturatedFats = this.getValue('Fatty acids, total monounsaturated');
     let otherFats = totalFat - saturatedFats - polySaturatedFats - monoSaturatedFats;
     
-    let dietaryFiber = getNutrientValue(this.props.report, 'Fiber, total dietary')
-    let sugar = getNutrientValue(this.props.report, 'Sugars, total')
+    let dietaryFiber = this.getValue('Fiber, total dietary')
+    let sugar = this.getValue('Sugars, total')
     let otherCarbs = totalCarbs - dietaryFiber - sugar;
     
     const data02 = [
