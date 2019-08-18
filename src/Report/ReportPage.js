@@ -16,6 +16,13 @@ class ReportPage extends Component {
     this.props.getReport(this.urlNDBNO);
   }
 
+  sliderPrecision = (mass) => {
+    if (mass < 25) return 1;
+    if (mass < 100) return 5;
+    if (mass < 500) return 10;
+    return 50;
+  }
+
   render() {
     return (
       <div className="ReportPage">
@@ -33,6 +40,7 @@ class ReportPage extends Component {
               className="massInput"
               minValue={0}
               maxValue={1000}
+              step={this.sliderPrecision(this.props.mass)}
               value={this.props.mass}
               onChange={this.props.setMass}
               formatLabel={(value) => `Mass ${value} g`}
