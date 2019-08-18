@@ -34,7 +34,9 @@ class ReportPage extends Component {
               minValue={0}
               maxValue={1000}
               value={this.props.mass}
-              onChange={this.props.setMass} />
+              onChange={this.props.setMass}
+              formatLabel={(value) => `Mass ${value} g`}
+            />
           </div>
         </div>
         {this.props.loaded && <div className="ReportPage-container">
