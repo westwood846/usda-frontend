@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/usda-frontend/static/css/main.962de7df.chunk.css",
-    "main.js": "/usda-frontend/static/js/main.2ddb730d.chunk.js",
-    "main.js.map": "/usda-frontend/static/js/main.2ddb730d.chunk.js.map",
+    "main.js": "/usda-frontend/static/js/main.9234706f.chunk.js",
+    "main.js.map": "/usda-frontend/static/js/main.9234706f.chunk.js.map",
     "runtime-main.js": "/usda-frontend/static/js/runtime-main.176d3270.js",
     "runtime-main.js.map": "/usda-frontend/static/js/runtime-main.176d3270.js.map",
     "static/css/2.29c3f92e.chunk.css": "/usda-frontend/static/css/2.29c3f92e.chunk.css",
-    "static/js/2.b54b215b.chunk.js": "/usda-frontend/static/js/2.b54b215b.chunk.js",
-    "static/js/2.b54b215b.chunk.js.map": "/usda-frontend/static/js/2.b54b215b.chunk.js.map",
+    "static/js/2.ff20838b.chunk.js": "/usda-frontend/static/js/2.ff20838b.chunk.js",
+    "static/js/2.ff20838b.chunk.js.map": "/usda-frontend/static/js/2.ff20838b.chunk.js.map",
     "index.html": "/usda-frontend/index.html",
-    "precache-manifest.231c2f7420a98df417972cc2f42a5afa.js": "/usda-frontend/precache-manifest.231c2f7420a98df417972cc2f42a5afa.js",
+    "precache-manifest.9a416d744e5c09c80c68bf367985ca2e.js": "/usda-frontend/precache-manifest.9a416d744e5c09c80c68bf367985ca2e.js",
     "service-worker.js": "/usda-frontend/service-worker.js",
     "static/css/2.29c3f92e.chunk.css.map": "/usda-frontend/static/css/2.29c3f92e.chunk.css.map",
     "static/css/main.962de7df.chunk.css.map": "/usda-frontend/static/css/main.962de7df.chunk.css.map",
-    "static/js/2.b54b215b.chunk.js.LICENSE.txt": "/usda-frontend/static/js/2.b54b215b.chunk.js.LICENSE.txt"
+    "static/js/2.ff20838b.chunk.js.LICENSE.txt": "/usda-frontend/static/js/2.ff20838b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.176d3270.js",
     "static/css/2.29c3f92e.chunk.css",
-    "static/js/2.b54b215b.chunk.js",
+    "static/js/2.ff20838b.chunk.js",
     "static/css/main.962de7df.chunk.css",
-    "static/js/main.2ddb730d.chunk.js"
+    "static/js/main.9234706f.chunk.js"
   ]
 }
