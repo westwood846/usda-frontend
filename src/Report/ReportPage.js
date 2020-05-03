@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Report from "./Report";
-import { getReport, setMass } from "../actions";
-import Breadcrumbs from "./Breadcrumbs";
-import { get, isUndefined } from "lodash";
 import { Link } from "react-router-dom";
-import Analysis from "./Analysis";
+
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
+import { get, isUndefined } from "lodash";
+import { css } from "emotion";
+
+import Breadcrumbs from "./Breadcrumbs";
+import Analysis from "./Analysis";
+import Report from "./Report";
+import Loading from "./Loading";
+
+import { getReport, setMass } from "../actions";
 
 class ReportPage extends Component {
   constructor(props) {
@@ -58,7 +63,7 @@ class ReportPage extends Component {
             />
           </div>
         </div>
-        {this.props.loaded && (
+        {this.props.loaded ? (
           <div className="ReportPage-container">
             <div className="ReportPage-report">
               <Report report={this.props.report} />
@@ -67,6 +72,8 @@ class ReportPage extends Component {
               <Analysis report={this.props.report} />
             </div>
           </div>
+        ) : (
+          <Loading />
         )}
       </div>
     );
