@@ -2,9 +2,9 @@ import { groupBy, find } from "lodash";
 
 export const groupOrder = [
   "Proximates",
+  "Lipids",
   "Vitamins",
   "Minerals",
-  "Lipids",
   "Other",
 ];
 
@@ -14,6 +14,10 @@ export const sortNutrientsByGroup = (nutrients) => {
 
 export const compareNutrients = (a, b) => {
   return groupOrder.indexOf(a.group) - groupOrder.indexOf(b.group);
+};
+
+export const groupOrderNumber = (nutrient) => {
+  return groupOrder.indexOf(nutrient.group);
 };
 
 export const groupByNutrientGroup = (nutrients) => groupBy(nutrients, "group");
