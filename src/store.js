@@ -14,7 +14,11 @@ export default function configureStore(preloadedState) {
   const store = createStore(
     rootReducer(history),
     preloadedState,
-    compose(applyMiddleware(routerMiddleware(history), epicMiddleware))
+    compose(
+      applyMiddleware(routerMiddleware(history), epicMiddleware),
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
   );
 
   epicMiddleware.run(rootEpic);
