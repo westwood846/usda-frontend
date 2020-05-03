@@ -4,7 +4,7 @@ a {
 }
 
 .App {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #222;
 }
 
@@ -63,7 +63,7 @@ a {
 }
 
 .SearchResultItem h3 {
-  margin-bottom: .1rem;;
+  margin-bottom: 0.1rem;
   font-weight: normal;
 }
 
@@ -81,7 +81,7 @@ a {
 
 .Breadcrumbs {
   margin-top: 1rem;
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
 }
 
 .Breadcrumbs-item {
@@ -94,7 +94,7 @@ a {
 
 .ReportPage h1 {
   margin: 0;
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
 }
 
 .NutrientTable {
@@ -112,7 +112,8 @@ a {
   margin-top: 2rem;
 }
 
-.ReportPage-report,.ReportPage-analysis {
+.ReportPage-report,
+.ReportPage-analysis {
   /* border: 1px solid black; */
 }
 
@@ -131,13 +132,12 @@ hr {
 }
 
 .NutrientTable h2 {
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
 }
 
 .NutrientTable td.val {
   text-align: right;
 }
-
 
 .NutrientTable {
   margin-left: 2rem;
@@ -165,8 +165,8 @@ hr {
 
 .nutTable td {
   border-top: 1px solid #eaeaea;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .emoji-comparator {
@@ -180,8 +180,8 @@ hr {
 .input-range {
   margin-top: 2rem;
   margin-bottom: 1rem;
-  margin-left: .5rem;
-  margin-right: .5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   width: 460px !important;
 }
 
@@ -190,7 +190,7 @@ hr {
 }
 
 .Comparator div:not(:last-child) {
-  margin-bottom: 1.5rem;;
+  margin-bottom: 1.5rem;
 }
 
 .Comparator-header {

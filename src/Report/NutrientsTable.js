@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 export class NutrientTable extends Component {
   render() {
@@ -27,16 +27,12 @@ export class NutrientTable extends Component {
           </tbody>
         </table>
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
-  
-})
+const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = {
-  
-}
+const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(NutrientTable)
+export default connect(mapStateToProps, mapDispatchToProps)(NutrientTable);

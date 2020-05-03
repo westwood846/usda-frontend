@@ -1,48 +1,55 @@
-import { groupBy, find } from 'lodash';
+import { groupBy, find } from "lodash";
 
-
-export const groupOrder = ['Proximates', 'Vitamins', 'Minerals', 'Lipids', 'Other'];
+export const groupOrder = [
+  "Proximates",
+  "Vitamins",
+  "Minerals",
+  "Lipids",
+  "Other",
+];
 
 export const sortNutrientsByGroup = (nutrients) => {
   return nutrients.sort(compareNutrients);
-}
+};
 
 export const compareNutrients = (a, b) => {
-  return groupOrder.indexOf(a.group) - groupOrder.indexOf(b.group) ;
-}
+  return groupOrder.indexOf(a.group) - groupOrder.indexOf(b.group);
+};
 
-export const groupByNutrientGroup = (nutrients) => groupBy(nutrients, 'group');
+export const groupByNutrientGroup = (nutrients) => groupBy(nutrients, "group");
 
 export const dataSourceIdentifierLookup = {
   BOTH: "Any",
   STANDARD_REFERENCE: "Standard Reference",
   BRANDED_FOOD_PRODUCTS: "Branded Food Products",
-}
+};
 
 export const dataSourceIdentifiers = Object.keys(dataSourceIdentifierLookup);
 
-export const decodeDataSourceIdentifier = (identifier) => (dataSourceIdentifierLookup[identifier]);
+export const decodeDataSourceIdentifier = (identifier) =>
+  dataSourceIdentifierLookup[identifier];
 
-export const getNutrient = (food, name) => find(food.nutrients, {name});
+export const getNutrient = (food, name) => find(food.nutrients, { name });
 
-export const getNutrientValue = (food, name) => Number(getNutrient(food, name) ? getNutrient(food, name).value : undefined);
+export const getNutrientValue = (food, name) =>
+  Number(getNutrient(food, name) ? getNutrient(food, name).value : undefined);
 
 export const referenceIntake = {
-  "Energy": 2000,
+  Energy: 2000,
   "Total lipid (fat)": 67,
   "Fatty acids, total saturated": 20,
-  "Cholesterol": 300,
+  Cholesterol: 300,
   "Carbohydrate, by difference": 300,
   "Fiber, total dietary": 25,
-  "Protein": 50,
+  Protein: 50,
   "Vitamin C, total ascorbic acid": 60,
   "Vitamin B-6": 1.2,
   "Vitamin B-12": 6,
   "Vitamin E (alpha-tocopherol)": 15,
   "Vitamin K (phylloquinone)": 120,
-  "Riboflavin": 1.1,
-  "Thiamin": 1.1,
-  "Niacin": 14,
+  Riboflavin: 1.1,
+  Thiamin: 1.1,
+  Niacin: 14,
   "Folate, DFE": 400,
   "Vitamin A, RAE": 600,
   "Vitamin D": 800,
@@ -54,20 +61,19 @@ export const referenceIntake = {
   "Sodium, Na": 2400,
   "Potassium, K": 3533,
   "Zinc, Zn": 8,
-}
+};
 
 export const labels = {
   "Vitamin C, total ascorbic acid": "Vitamin C",
-  "Vitamin B-6":                    "Vitamin B6",
-  "Vitamin B-12":                   "Vitamin B12",
-  "Vitamin E (alpha-tocopherol)":   "Vitamin E",
-  "Vitamin K (phylloquinone)":      "Vitamin E",
-  "Calcium, Ca":                    "Calcium",
-  "Iron, Fe":                       "Iron",
-  "Magnesium, Mg":                  "Magnesium",
-  "Phosphorus, P":                  "Phosphorus",
-  "Potassium, K":                   "Potassium",
-  "Sodium, Na":                     "Sodium",
-  "Zinc, Zn":                       "Zinc",
-  
-}
+  "Vitamin B-6": "Vitamin B6",
+  "Vitamin B-12": "Vitamin B12",
+  "Vitamin E (alpha-tocopherol)": "Vitamin E",
+  "Vitamin K (phylloquinone)": "Vitamin E",
+  "Calcium, Ca": "Calcium",
+  "Iron, Fe": "Iron",
+  "Magnesium, Mg": "Magnesium",
+  "Phosphorus, P": "Phosphorus",
+  "Potassium, K": "Potassium",
+  "Sodium, Na": "Sodium",
+  "Zinc, Zn": "Zinc",
+};

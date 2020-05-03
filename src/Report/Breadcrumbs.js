@@ -1,30 +1,37 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Breadcrumbs extends Component {
   render() {
-    let fragments = this.props.name.split(', ');
+    let fragments = this.props.name.split(", ");
     return (
       <div className="Breadcrumbs">
-        {fragments.map((fragment, index, fragments) => 
+        {fragments.map((fragment, index, fragments) => (
           <span key={index}>
             &nbsp;/&nbsp;
-            <Link to={{pathname: "/search", search: `?query=${fragments.slice(0, index + 1).join(', ')}&dataSource=${this.props.dataSource}`}} className="Breadcrumbs-item">
+            <Link
+              to={{
+                pathname: "/search",
+                search: `?query=${fragments
+                  .slice(0, index + 1)
+                  .join(", ")}&dataSource=${this.props.dataSource}`,
+              }}
+              className="Breadcrumbs-item"
+            >
               {fragment}
             </Link>
           </span>
-        )}
+        ))}
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
-  dataSource: state.app.searchDataSource
-})
+  dataSource: state.app.searchDataSource,
+});
 
-const mapDispatchToProps = {
-}
+const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Breadcrumbs)
+export default connect(mapStateToProps, mapDispatchToProps)(Breadcrumbs);
