@@ -17,6 +17,7 @@ const initialState = {
   searchQuery: "",
   searchDataSource: "STANDARD_REFERENCE",
   mass: 100,
+  reports: {},
 };
 
 const appReducer = (state = initialState, { type, payload }) => {
@@ -76,6 +77,7 @@ const appReducer = (state = initialState, { type, payload }) => {
         getReportResult: payload,
         gettingReport: false,
         getReportNDBNO: undefined,
+        reports: { ...state.reports, [payload.desc.ndbno]: payload.desc },
       };
 
     case GET_REPORT_REJECTED:
