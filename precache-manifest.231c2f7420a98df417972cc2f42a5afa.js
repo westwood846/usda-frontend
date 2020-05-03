@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b9026b54bb93e8cb1ff5133573d3cbfc",
+    "revision": "490003054efd133cdf5aca2ac28b68dd",
     "url": "/usda-frontend/index.html"
   },
   {
-    "revision": "950d1bd152a9740028a7",
+    "revision": "8210039b7a349de834e8",
     "url": "/usda-frontend/static/css/2.29c3f92e.chunk.css"
   },
   {
-    "revision": "189340a7ac6e383ccbb1",
+    "revision": "205bdfcb22ba86724eea",
     "url": "/usda-frontend/static/css/main.962de7df.chunk.css"
   },
   {
-    "revision": "950d1bd152a9740028a7",
-    "url": "/usda-frontend/static/js/2.59372629.chunk.js"
+    "revision": "8210039b7a349de834e8",
+    "url": "/usda-frontend/static/js/2.b54b215b.chunk.js"
   },
   {
     "revision": "8157ba65073b383e6a532d671c913c97",
-    "url": "/usda-frontend/static/js/2.59372629.chunk.js.LICENSE.txt"
+    "url": "/usda-frontend/static/js/2.b54b215b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "189340a7ac6e383ccbb1",
-    "url": "/usda-frontend/static/js/main.02ec41cd.chunk.js"
+    "revision": "205bdfcb22ba86724eea",
+    "url": "/usda-frontend/static/js/main.2ddb730d.chunk.js"
   },
   {
     "revision": "4392eb24cd9ebd6a99c5",
