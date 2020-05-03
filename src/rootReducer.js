@@ -77,7 +77,7 @@ const appReducer = (state = initialState, { type, payload }) => {
         getReportResult: payload,
         gettingReport: false,
         getReportNDBNO: undefined,
-        reports: { ...state.reports, [payload.desc.ndbno]: payload.desc },
+        reports: { ...state.reports, [payload.desc.ndbno]: payload },
       };
 
     case GET_REPORT_REJECTED:

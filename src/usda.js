@@ -34,6 +34,14 @@ export const getNutrient = (food, name) => find(food.nutrients, { name });
 export const getNutrientValue = (food, name) =>
   Number(getNutrient(food, name) ? getNutrient(food, name).value : undefined);
 
+export const pivotNutrients = (report) => ({
+  ...report,
+  nutrients: report.nutrients.reduce(
+    (nutrients, nutrient) => ({ ...nutrients, [nutrient.name]: nutrient }),
+    {}
+  ),
+});
+
 export const referenceIntake = {
   Energy: 2000,
   "Total lipid (fat)": 67,

@@ -5,8 +5,39 @@ import useDeepCompareEffect from "use-deep-compare-effect";
 
 import { get, difference, pick } from "lodash";
 
+import DataTable from "react-data-table-component";
+
 import { getReport } from "../actions";
 import { cachedReportsIds, cachedReports } from "../selectors";
+import { pivotNutrients } from "../usda";
+
+const columns = [
+  {
+    name: "Name",
+    selector: "desc.name",
+    sortable: true,
+  },
+  {
+    name: "ndbno",
+    selector: "desc.ndbno",
+    sortable: true,
+  },
+  {
+    name: "Water",
+    selector: "nutrients.Water.value",
+    sortable: true,
+  },
+  {
+    name: "Energy",
+    selector: "nutrients.Energy.value",
+    sortable: true,
+  },
+  {
+    name: "Protein",
+    selector: "nutrients.Protein.value",
+    sortable: true,
+  },
+];
 
 export const TablePage = ({ ids, cachedIds, reports, getReport }) => {
   useDeepCompareEffect(() => {
@@ -15,9 +46,7 @@ export const TablePage = ({ ids, cachedIds, reports, getReport }) => {
   }, [ids, cachedIds, getReport]);
   return (
     <div>
-      {JSON.stringify(ids)}
-      <br />
-      {JSON.stringify(reports)}
+      <DataTable columns={columns} data={reports} title="Reports" responsive />
     </div>
   );
 };
@@ -34,7 +63,7 @@ const mapStateToProps = (state) => {
   return {
     cachedIds: cachedReportsIds(state),
     ids,
-    reports: Object.values(pick(cachedReports(state), ids)),
+    reports: Object.values(pick(cachedReports(state), ids)).map(pivotNutrients),
   };
 };
 
