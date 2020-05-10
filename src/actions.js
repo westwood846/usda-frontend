@@ -8,6 +8,10 @@ import {
   SET_QUERY,
   SET_DATA_SOURCE,
   SET_MASS,
+  COMPARE_UPSERT,
+  COMPARE_REMOVE,
+  COMPARE_SET,
+  COMPARE_CLEAR,
 } from "./actionTypes";
 
 export const setQuery = (query) => ({ type: SET_QUERY, payload: query });
@@ -34,3 +38,19 @@ export const getReportRejected = (result) => ({
   payload: result,
 });
 export const setMass = (mass) => ({ type: SET_MASS, payload: mass });
+export const compareSet = (compare) => ({
+  type: COMPARE_SET,
+  payload: compare,
+});
+export const compareInsert = (ndbno, amount) => ({
+  type: COMPARE_UPSERT,
+  payload: { ndbno, amount },
+});
+export const compareUpdate = compareInsert;
+export const compareRemove = (ndbno) => ({
+  type: COMPARE_REMOVE,
+  payload: ndbno,
+});
+export const compareClear = (ndbno) => ({
+  type: COMPARE_CLEAR,
+});

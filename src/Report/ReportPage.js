@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import { get, isUndefined } from "lodash";
-import { css } from "emotion";
 
 import Breadcrumbs from "./Breadcrumbs";
 import Analysis from "./Analysis";
 import Report from "./Report";
 import Loading from "./Loading";
 
-import { getReport, setMass } from "../actions";
+import { getReport, setMass, compareInsert } from "../actions";
 
 class ReportPage extends Component {
   constructor(props) {
@@ -29,6 +28,7 @@ class ReportPage extends Component {
   };
 
   render() {
+    const { compareInsert, ndbno, mass } = this.props;
     return (
       <div className="ReportPage">
         <div className="header">
@@ -37,7 +37,9 @@ class ReportPage extends Component {
               {this.props.loaded
                 ? `${this.props.name}`
                 : `Loading report for ndbno ${this.urlNDBNO}`}
-              <br />
+              <button onClick={() => compareInsert(ndbno, mass)}>
+                Compare
+              </button>
             </h1>
             <div className="descriptor">
               {this.props.loaded && (
@@ -93,6 +95,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   getReport,
   setMass,
+  compareInsert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReportPage);

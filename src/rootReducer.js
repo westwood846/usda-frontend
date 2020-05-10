@@ -8,9 +8,14 @@ import {
   SET_QUERY,
   SET_DATA_SOURCE,
   SET_MASS,
+  COMPARE_SET,
+  COMPARE_UPSERT,
+  COMPARE_REMOVE,
+  COMPARE_CLEAR,
 } from "./actionTypes";
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
+import { uniqBy } from "lodash";
 
 const initialState = {
   searching: false,
@@ -18,6 +23,7 @@ const initialState = {
   searchDataSource: "STANDARD_REFERENCE",
   mass: 100,
   reports: {},
+  compare: [],
 };
 
 const appReducer = (state = initialState, { type, payload }) => {
@@ -90,6 +96,26 @@ const appReducer = (state = initialState, { type, payload }) => {
 
     case SET_MASS:
       return { ...state, mass: payload };
+
+    case COMPARE_SET:
+      return { ...state, compare: payload };
+
+    case COMPARE_UPSERT:
+      return {
+        ...state,
+        compare: uniqBy([payload, ...state.compare], "ndbno"),
+      };
+
+    case COMPARE_REMOVE:
+      return {
+        ...state,
+        compare: state.compare.filter((item) => item.ndbno !== payload),
+      };
+    case COMPARE_CLEAR:
+      return {
+        ...state,
+        compare: initialState.compare,
+      };
 
     default:
       return state;
