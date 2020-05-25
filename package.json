@@ -5,6 +5,7 @@
   "homepage": "http://westwood846.github.io/usda-frontend",
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "connected-react-router": "^6.8.0",
     "emotion": "^10.0.27",
     "gh-pages": "^2.2.0",

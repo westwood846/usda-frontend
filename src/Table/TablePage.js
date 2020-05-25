@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import useDeepCompareEffect from "use-deep-compare-effect";
 import { css } from "emotion";
 import { withRouter } from "react-router-dom";
 
-import { get, difference, pick, chain } from "lodash";
+import { get, difference, pick, chain, partial, default as _ } from "lodash";
 
 import DataTable from "react-data-table-component";
 
@@ -14,6 +14,7 @@ import { cachedReportsIds, cachedReports } from "../selectors";
 import { pivotNutrients, groupOrderNumber } from "../usda";
 import ErrorBoundary from "../ErrorBoundary";
 import Logo from "../Logo";
+import NutrientSelector from "./NutrientSelector";
 
 const staticColumns = [
   {
@@ -37,7 +38,6 @@ export const TablePage = ({
   getReport,
   compareSet,
 }) => {
-  console.log({ ids });
   useDeepCompareEffect(() => {
     const idsToGet = difference(ids, cachedIds);
     idsToGet.forEach(getReport);
@@ -45,22 +45,32 @@ export const TablePage = ({
   useDeepCompareEffect(() => {
     compareSet(ids.map((id) => ({ ndbno: id, amount: 100 })));
   }, [ids, compareSet]);
-  const columns = useMemo(() => {
-    const dynamicColumns = chain(reports)
+
+  const nutrients = useMemo(() => {
+    return chain(reports)
       .map("nutrients")
       .flatMap(Object.values)
       .sortBy(groupOrderNumber)
-      .map("name")
+      .map(partial(pick, _, ["name", "group"]))
       .uniq()
-      .map((name) => ({
-        name,
-        selector: (row) => get(row, `nutrients.${name}.value`, "-"),
+      .value();
+  }, [reports]);
+
+  const [selectedNutrients, setSelectedNutrients] = useState(null);
+
+  const columns = [
+    ...staticColumns,
+    ...chain(selectedNutrients)
+      .filter("selected")
+      .map((nutrient) => ({
+        name: nutrient.name,
+        selector: (row) => get(row, ["nutrients", nutrient.name, "value"], "-"),
         sortable: true,
         compact: true,
       }))
-      .value();
-    return [...staticColumns, ...dynamicColumns];
-  }, [reports]);
+      .value(),
+  ];
+
   return (
     <div
       className={css`
@@ -68,6 +78,13 @@ export const TablePage = ({
       `}
     >
       <Logo />
+      <NutrientSelector
+        nutrients={nutrients}
+        setNutrients={setSelectedNutrients}
+        className={css`
+          margin-top: 2rem;
+        `}
+      />
       <ErrorBoundary>
         <DataTable
           columns={columns}
@@ -89,7 +106,6 @@ TablePage.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log({ location: state.router.location });
   const idsRaw = new URLSearchParams(
     get(state, "router.location.search", "")
   ).get("ids");
