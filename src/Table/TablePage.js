@@ -5,7 +5,15 @@ import useDeepCompareEffect from "use-deep-compare-effect";
 import { css } from "emotion";
 import { withRouter } from "react-router-dom";
 
-import { get, difference, pick, chain, partial, default as _ } from "lodash";
+import {
+  reduce,
+  get,
+  difference,
+  pick,
+  chain,
+  partial,
+  default as _,
+} from "lodash";
 
 import DataTable from "react-data-table-component";
 
@@ -15,6 +23,27 @@ import { pivotNutrients, groupOrderNumber } from "../usda";
 import ErrorBoundary from "../ErrorBoundary";
 import Logo from "../Logo";
 import NutrientSelector from "./NutrientSelector";
+import {
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Bar,
+  ResponsiveContainer,
+} from "recharts";
+
+const colors = [
+  "#f44336",
+  "#e91e63",
+  "#673ab7",
+  "#3f51b5",
+  "#2196f3",
+  "#03a9f4",
+  "#00bcd4",
+  "#009688",
+];
 
 const staticColumns = [
   {
@@ -58,18 +87,34 @@ export const TablePage = ({
 
   const [selectedNutrients, setSelectedNutrients] = useState(null);
 
-  const columns = [
-    ...staticColumns,
-    ...chain(selectedNutrients)
-      .filter("selected")
-      .map((nutrient) => ({
-        name: nutrient.name,
-        selector: (row) => get(row, ["nutrients", nutrient.name, "value"], "-"),
-        sortable: true,
-        compact: true,
-      }))
-      .value(),
-  ];
+  const dynamicColumns = chain(selectedNutrients)
+    .filter("selected")
+    .map((nutrient) => ({
+      name: nutrient.name,
+      selector: (row) => get(row, ["nutrients", nutrient.name, "value"], "-"),
+      sortable: true,
+      compact: true,
+    }))
+    .value();
+
+  const columns = [...staticColumns, ...dynamicColumns];
+
+  const chartData = chain(dynamicColumns)
+    .filter("selector")
+    .map((column) => ({
+      name: column.name,
+      ...reduce(
+        reports,
+        (acc, report) => ({
+          ...acc,
+          [report.desc.ndbno]: Number(column.selector(report)),
+        }),
+        {}
+      ),
+    }))
+    .value();
+
+  console.log(chartData);
 
   return (
     <div
@@ -94,6 +139,29 @@ export const TablePage = ({
           dense
         />
       </ErrorBoundary>
+      <ResponsiveContainer
+        width="100%"
+        height={300}
+        className={css`
+          margin-top: 2rem;
+        `}
+      >
+        <BarChart data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          {reports.map((report, index) => (
+            <Bar
+              key={report.desc.ndbno}
+              dataKey={report.desc.ndbno}
+              name={report.desc.name}
+              fill={colors[index % colors.length]}
+            />
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };
