@@ -1,30 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-class SearchResultItem extends Component {
-  render() {
-    return (
-      <div className="SearchResultItem">
-        <Link to={`/report/${this.props.item.ndbno}`}>
-          <h3>{this.props.item.name}</h3>
-        </Link>
-        <div className="SearchResultItem-meta">
-          <span className="SearchResultItem-metaDescriptor">
-            <strong>ndbno: </strong>
-            {this.props.item.ndbno}
-          </span>
-          <span className="SearchResultItem-metaDescriptor">
-            <strong>Manufacturer: </strong>
-            {this.props.item.manu}
-          </span>
-          <span className="SearchResultItem-metaDescriptor">
-            <strong>Data Source: </strong>
-            {this.props.item.ds}
-          </span>
-        </div>
+export const SearchResultItem = ({ item }) => {
+  return (
+    <div className="SearchResultItem">
+      <Link to={`/report/${item.ndbno}`}>
+        <h3>{item.name}</h3>
+      </Link>
+      <div className="SearchResultItem-meta">
+        <span className="SearchResultItem-metaDescriptor">
+          <strong>ndbno: </strong>
+          {item.ndbno}
+        </span>
+        <span className="SearchResultItem-metaDescriptor">
+          <strong>Manufacturer: </strong>
+          {item.manu}
+        </span>
+        <span className="SearchResultItem-metaDescriptor">
+          <strong>Data Source: </strong>
+          {item.ds}
+        </span>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default SearchResultItem;
