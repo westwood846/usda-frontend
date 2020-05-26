@@ -99,11 +99,8 @@ export const getDatum = (report, key, factor, precision = 0) => {
 };
 
 export const getReference = (key, report, factor, precision = 0) => {
-  return referenceIntake[key]
-    ? round(
-        ((getNutrient(report, key).value * factor) / referenceIntake[key]) *
-          100,
-        precision
-      )
-    : null;
+  const nutrient = getNutrient(report, key);
+  return referenceIntake[key] && nutrient
+    ? round(((nutrient.value * factor) / referenceIntake[key]) * 100, precision)
+    : undefined;
 };
