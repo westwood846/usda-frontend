@@ -19,7 +19,12 @@ import DataTable from "react-data-table-component";
 
 import { getReport, compareSet } from "../actions";
 import { cachedReportsIds, cachedReports } from "../selectors";
-import { pivotNutrients, groupOrderNumber } from "../usda";
+import {
+  pivotNutrients,
+  groupOrderNumber,
+  getDatum,
+  getReference,
+} from "../usda";
 import ErrorBoundary from "../ErrorBoundary";
 import Logo from "../Logo";
 import NutrientSelector from "./NutrientSelector";
@@ -54,12 +59,12 @@ const staticColumns = [
       <Link to={`/report/${row.desc.ndbno}`}>{row.desc.name}</Link>
     ),
   },
-  {
-    name: "ndbno",
-    selector: "desc.ndbno",
-    sortable: true,
-    compact: true,
-  },
+  // {
+  //   name: "ndbno",
+  //   selector: "desc.ndbno",
+  //   sortable: true,
+  //   compact: true,
+  // },
 ];
 
 export const TablePage = ({
@@ -94,6 +99,7 @@ export const TablePage = ({
     .map((nutrient) => ({
       name: nutrient.name,
       selector: (row) => get(row, ["nutrients", nutrient.name, "value"], "-"),
+      format: (row) => getDatum(row, nutrient.name, 1, 2),
       sortable: true,
       compact: true,
     }))
@@ -102,14 +108,13 @@ export const TablePage = ({
   const columns = [...staticColumns, ...dynamicColumns];
 
   const chartData = chain(dynamicColumns)
-    .filter("selector")
     .map((column) => ({
       name: column.name,
       ...reduce(
         reports,
         (acc, report) => ({
           ...acc,
-          [report.desc.ndbno]: Number(column.selector(report)),
+          [report.desc.ndbno]: getReference(column.name, report, 1, 2),
         }),
         {}
       ),

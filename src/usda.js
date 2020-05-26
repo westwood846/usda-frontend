@@ -1,4 +1,4 @@
-import { groupBy, find } from "lodash";
+import { groupBy, find, round } from "lodash";
 
 export const groupOrder = [
   "Proximates",
@@ -88,4 +88,22 @@ export const labels = {
   "Potassium, K": "Potassium",
   "Sodium, Na": "Sodium",
   "Zinc, Zn": "Zinc",
+};
+
+export const getDatum = (report, key, factor, precision = 0) => {
+  const nutrient = getNutrient(report, key);
+  if (!nutrient) return null;
+  return `${round(Number(nutrient.value * factor), precision)} ${
+    nutrient.unit
+  }`;
+};
+
+export const getReference = (key, report, factor, precision = 0) => {
+  return referenceIntake[key]
+    ? round(
+        ((getNutrient(report, key).value * factor) / referenceIntake[key]) *
+          100,
+        precision
+      )
+    : null;
 };

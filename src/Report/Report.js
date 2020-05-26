@@ -4,29 +4,18 @@ import {
   sortNutrientsByGroup,
   groupByNutrientGroup,
   getNutrient,
-  referenceIntake,
   labels,
+  getDatum,
+  getReference,
 } from "../usda";
 import { chunk } from "lodash";
 
 class Report extends Component {
-  datum = (key, precision = 0) => {
-    let nutrient = getNutrient(this.props.report, key);
-    if (!nutrient) return null;
-    return `${Number(nutrient.value * this.props.factor).toFixed(precision)} ${
-      nutrient.unit
-    }`;
-  };
+  datum = (key, precision) =>
+    getDatum(this.props.report, key, this.props.factor, precision);
 
-  reference = (key) => {
-    return referenceIntake[key]
-      ? `${Math.round(
-          ((getNutrient(this.props.report, key).value * this.props.factor) /
-            referenceIntake[key]) *
-            100
-        )} %`
-      : null;
-  };
+  reference = (key) =>
+    `${getReference(key, this.props.report, this.props.factor)}%`;
 
   datumCell = (key, label = key, main) => (
     <td className={`nutTable-left ${!main && "indent-2"}`}>
