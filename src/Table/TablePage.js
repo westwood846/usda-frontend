@@ -12,6 +12,8 @@ import {
   pick,
   chain,
   partial,
+  sortBy,
+  indexOf,
   default as _,
 } from "lodash";
 
@@ -55,6 +57,7 @@ const staticColumns = [
     name: "Name",
     sortable: true,
     compact: true,
+    selector: (row) => get(row, "desc.name"),
     cell: (row) => (
       <Link to={`/report/${row.desc.ndbno}`}>{row.desc.name}</Link>
     ),
@@ -98,7 +101,8 @@ export const TablePage = ({
     .filter("selected")
     .map((nutrient) => ({
       name: nutrient.name,
-      selector: (row) => get(row, ["nutrients", nutrient.name, "value"], "-"),
+      selector: (row) =>
+        Number(get(row, ["nutrients", nutrient.name, "value"])),
       format: (row) => getDatum(row, nutrient.name, 1, 2),
       sortable: true,
       compact: true,
@@ -107,6 +111,20 @@ export const TablePage = ({
 
   const columns = [...staticColumns, ...dynamicColumns];
 
+  const [sort, setSort] = useState();
+
+  let sortedReports = sort ? sortBy(reports, sort.selector) : reports;
+  if (sort && sort.direction !== "asc") {
+    sortedReports = sortedReports.reverse();
+  }
+  const reportIndices = reports.reduce(
+    (acc, report) => ({
+      ...acc,
+      [report.desc.ndbno]: indexOf(sortedReports, report),
+    }),
+    {}
+  );
+
   const chartData = chain(dynamicColumns)
     .map((column) => ({
       name: column.name,
@@ -114,14 +132,17 @@ export const TablePage = ({
         reports,
         (acc, report) => ({
           ...acc,
-          [report.desc.ndbno]: getReference(column.name, report, 1, 2),
+          [reportIndices[report.desc.ndbno]]: getReference(
+            column.name,
+            report,
+            1,
+            2
+          ),
         }),
         {}
       ),
     }))
     .value();
-
-  console.log(chartData);
 
   return (
     <div
@@ -144,6 +165,7 @@ export const TablePage = ({
           title="Reports"
           responsive
           dense
+          onSort={(sort, direction) => setSort({ ...sort, direction })}
         />
       </ErrorBoundary>
       <ResponsiveContainer
@@ -159,12 +181,12 @@ export const TablePage = ({
           <YAxis />
           <Tooltip />
           <Legend />
-          {reports.map((report, index) => (
+          {sortedReports.map((report, index) => (
             <Bar
-              key={report.desc.ndbno}
-              dataKey={report.desc.ndbno}
-              name={report.desc.name}
-              fill={colors[index % colors.length]}
+              key={index}
+              dataKey={index}
+              name={sortedReports[index].desc.name}
+              fill={colors[reports.indexOf(report) % colors.length]}
             />
           ))}
         </BarChart>
