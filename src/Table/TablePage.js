@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import useDeepCompareEffect from "use-deep-compare-effect";
 import { css } from "emotion";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import {
   reduce,
@@ -48,9 +48,11 @@ const colors = [
 const staticColumns = [
   {
     name: "Name",
-    selector: "desc.name",
     sortable: true,
     compact: true,
+    cell: (row) => (
+      <Link to={`/report/${row.desc.ndbno}`}>{row.desc.name}</Link>
+    ),
   },
   {
     name: "ndbno",
