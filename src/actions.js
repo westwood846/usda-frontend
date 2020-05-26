@@ -42,15 +42,15 @@ export const compareSet = (compare) => ({
   type: COMPARE_SET,
   payload: compare,
 });
-export const compareInsert = (ndbno, amount) => ({
+export const compareInsert = (ndbno, amount, fallbackName) => ({
   type: COMPARE_UPSERT,
-  payload: { ndbno, amount },
+  payload: { ndbno, amount, fallbackName },
 });
 export const compareUpdate = compareInsert;
 export const compareRemove = (ndbno) => ({
   type: COMPARE_REMOVE,
   payload: ndbno,
 });
-export const compareClear = (ndbno) => ({
+export const compareClear = () => ({
   type: COMPARE_CLEAR,
 });

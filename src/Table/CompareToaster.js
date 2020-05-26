@@ -73,7 +73,7 @@ export const CompareToaster = withRouter(
                   `}
                   title={item.report ? item.report.desc.name : item.ndbno}
                 >
-                  {item.report ? item.report.desc.name : item.ndbno}
+                  {item.report ? item.report.desc.name : item.fallbackName}
                 </td>
                 <td>{item.amount} g</td>
                 <td>
