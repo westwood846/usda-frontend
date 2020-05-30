@@ -1,25 +1,29 @@
 {
   "files": {
-    "main.css": "/usda-frontend/static/css/main.3e5f14f8.chunk.css",
-    "main.js": "/usda-frontend/static/js/main.9b9e8c0c.chunk.js",
-    "main.js.map": "/usda-frontend/static/js/main.9b9e8c0c.chunk.js.map",
-    "runtime-main.js": "/usda-frontend/static/js/runtime-main.176d3270.js",
-    "runtime-main.js.map": "/usda-frontend/static/js/runtime-main.176d3270.js.map",
-    "static/css/2.29c3f92e.chunk.css": "/usda-frontend/static/css/2.29c3f92e.chunk.css",
-    "static/js/2.2a824eb1.chunk.js": "/usda-frontend/static/js/2.2a824eb1.chunk.js",
-    "static/js/2.2a824eb1.chunk.js.map": "/usda-frontend/static/js/2.2a824eb1.chunk.js.map",
-    "index.html": "/usda-frontend/index.html",
-    "precache-manifest.733b5036623f0b9aa5143df6350fb51e.js": "/usda-frontend/precache-manifest.733b5036623f0b9aa5143df6350fb51e.js",
-    "service-worker.js": "/usda-frontend/service-worker.js",
-    "static/css/2.29c3f92e.chunk.css.map": "/usda-frontend/static/css/2.29c3f92e.chunk.css.map",
-    "static/css/main.3e5f14f8.chunk.css.map": "/usda-frontend/static/css/main.3e5f14f8.chunk.css.map",
-    "static/js/2.2a824eb1.chunk.js.LICENSE.txt": "/usda-frontend/static/js/2.2a824eb1.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.d39c4727.chunk.css",
+    "main.js": "/static/js/main.0fe8fc42.chunk.js",
+    "main.js.map": "/static/js/main.0fe8fc42.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.148d8d58.js",
+    "runtime-main.js.map": "/static/js/runtime-main.148d8d58.js.map",
+    "static/js/2.c69c2fdd.chunk.js": "/static/js/2.c69c2fdd.chunk.js",
+    "static/js/2.c69c2fdd.chunk.js.map": "/static/js/2.c69c2fdd.chunk.js.map",
+    "static/js/3.6f272dfc.chunk.js": "/static/js/3.6f272dfc.chunk.js",
+    "static/js/3.6f272dfc.chunk.js.map": "/static/js/3.6f272dfc.chunk.js.map",
+    "static/js/4.f3aedc2d.chunk.js": "/static/js/4.f3aedc2d.chunk.js",
+    "static/js/4.f3aedc2d.chunk.js.map": "/static/js/4.f3aedc2d.chunk.js.map",
+    "static/js/5.bd1468a9.chunk.js": "/static/js/5.bd1468a9.chunk.js",
+    "static/js/5.bd1468a9.chunk.js.map": "/static/js/5.bd1468a9.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.e631459737893b1dac591fbe851b7320.js": "/precache-manifest.e631459737893b1dac591fbe851b7320.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d39c4727.chunk.css.map": "/static/css/main.d39c4727.chunk.css.map",
+    "static/js/2.c69c2fdd.chunk.js.LICENSE.txt": "/static/js/2.c69c2fdd.chunk.js.LICENSE.txt",
+    "static/js/3.6f272dfc.chunk.js.LICENSE.txt": "/static/js/3.6f272dfc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.176d3270.js",
-    "static/css/2.29c3f92e.chunk.css",
-    "static/js/2.2a824eb1.chunk.js",
-    "static/css/main.3e5f14f8.chunk.css",
-    "static/js/main.9b9e8c0c.chunk.js"
+    "static/js/runtime-main.148d8d58.js",
+    "static/js/3.6f272dfc.chunk.js",
+    "static/css/main.d39c4727.chunk.css",
+    "static/js/main.0fe8fc42.chunk.js"
   ]
 }
