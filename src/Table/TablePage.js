@@ -38,7 +38,6 @@ import {
   getReference,
 } from "../usda";
 import ErrorBoundary from "../ErrorBoundary";
-import Logo from "../Logo";
 import NutrientSelector from "./NutrientSelector";
 import {
   BarChart,
@@ -161,7 +160,6 @@ export const TablePage = ({
         padding: 2rem 1rem;
       `}
     >
-      <Logo />
       <NutrientSelector
         nutrients={nutrients}
         setNutrients={setSelectedNutrients}

@@ -2,9 +2,10 @@ import React, { Suspense, useEffect } from "react";
 import { connect } from "react-redux";
 import SearchBar from "./SearchBar";
 import { setQuery, setDataSource, search } from "../actions";
-import Logo from "../Logo";
+import Logo from "../Site/Logo";
 import { decodeDataSourceIdentifier } from "../usda";
 import LazyLoadingFallback from "../common/LazyLoadingFallback";
+import { Box } from "@material-ui/core";
 
 const SearchResult = React.lazy(() => import("./SearchResult"));
 
@@ -57,7 +58,9 @@ const SearchPage = ({
   return (
     <div className="SearchPage">
       <div className="header">
-        <Logo />
+        <Box mr={3}>
+          <Logo />
+        </Box>
         <SearchBar />
       </div>
       <hr />

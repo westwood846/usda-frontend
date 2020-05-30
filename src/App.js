@@ -10,12 +10,14 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
 import { hot } from "react-hot-loader";
 import { history } from "./store.js";
+import Navbar from "./Site/Navbar";
 
 const App = () => {
   return (
     <ConnectedRouter history={history} basename={process.env.PUBLIC_URL}>
       <div className="App">
         <ThemeProvider theme={theme}>
+          <Navbar />
           <Switch>
             <Route path="/" exact component={SearchPage} />
             <Route path="/search" exact component={SearchPage} />
