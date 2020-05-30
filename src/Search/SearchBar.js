@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { setQuery, setDataSource, search } from "../actions";
-import { dataSourceIdentifiers, decodeDataSourceIdentifier } from "../usda";
-import { push } from "connected-react-router";
-import useDebounce from "../common/useDebounce";
+import React from "react";
+
+import { dataSourceIdentifiers, formatDataSource } from "../usda";
 
 const SearchBar = ({ query, setQuery, dataSource, setDataSource }) => {
   const handleInputChange = (event) => {
@@ -36,23 +33,11 @@ const SearchBar = ({ query, setQuery, dataSource, setDataSource }) => {
             checked={dataSource === identifier}
             onChange={handleDataSourceChange}
           ></input>
-          {decodeDataSourceIdentifier(identifier)}
+          {formatDataSource(identifier)}
         </label>
       ))}
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  // searchQuery: state.app.searchQuery,
-  // searchDataSource: state.app.searchDataSource,
-});
-
-const mapDispatchToProps = {
-  // setQuery,
-  // setDataSource,
-  // search,
-  // push,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default SearchBar;

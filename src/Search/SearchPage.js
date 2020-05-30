@@ -1,37 +1,34 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import SearchBar from "./SearchBar";
-import { setQuery, setDataSource, search } from "../actions";
-import Logo from "../Site/Logo";
-// import { decodeDataSourceIdentifier } from "../usda";
 import { push } from "connected-react-router";
-import LazyLoadingFallback from "../common/LazyLoadingFallback";
-import { Box } from "@material-ui/core";
-import useDebounce from "../common/useDebounce";
+
 import { get } from "lodash";
 
-const SearchResult = React.lazy(() => import("./SearchResult"));
+import { Box } from "@material-ui/core";
 
-const decodeDataSource = (ds) =>
-  ({
-    any: "BOTH",
-    "Standard Reference": "STANDARD_REFERENCE",
-    "Branded Food Products": "BRANDED_FOOD_PRODUCTS",
-  }[ds]);
+import Logo from "../Site/Logo";
+import SearchBar from "./SearchBar";
+import LazyLoadingFallback from "../common/LazyLoadingFallback";
+
+import useDebounce from "../common/useDebounce";
+import { decodeDataSource, dataSources } from "../usda";
+import { setQuery, setDataSource, search } from "../actions";
+
+const SearchResult = React.lazy(() => import("./SearchResult"));
 
 const SearchPage = ({ push, location, search, searching, error, result }) => {
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 100);
-  const [dataSource, setDataSource] = useState("STANDARD_REFERENCE");
+  const [dataSource, setDataSource] = useState(dataSources.STANDARD);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
+    if (urlParams.has("query"))
+      setQuery(decodeURIComponent(urlParams.get("query")));
     if (urlParams.has("dataSource"))
       setDataSource(
         decodeDataSource(decodeURIComponent(urlParams.get("dataSource")))
       );
-    if (urlParams.has("query"))
-      setQuery(decodeURIComponent(urlParams.get("query")));
   }, [location]);
 
   useEffect(() => {

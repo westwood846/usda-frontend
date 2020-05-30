@@ -3,7 +3,7 @@ import { sortBy, get, times, constant } from "lodash";
 
 import { Typography } from "@material-ui/core";
 import SearchResultItem from "./SearchResultItem";
-import { decodeDataSourceIdentifier } from "../usda";
+import { formatDataSource } from "../usda";
 
 export const SearchResult = ({
   query,
@@ -15,7 +15,7 @@ export const SearchResult = ({
   const items = !searching
     ? sortBy(get(result, "list.item"), "name")
     : times(7, constant({ loading: true }));
-  const ds = decodeDataSourceIdentifier(dataSource);
+  const ds = formatDataSource(dataSource);
   const start = get(result, "list.start") + 1;
   const end = Number(get(result, "list.end"));
   const total = get(result, "list.total");

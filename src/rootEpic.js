@@ -1,3 +1,5 @@
+import { ofType, combineEpics } from "redux-observable";
+import { of } from "rxjs";
 import { ajax } from "rxjs/ajax";
 import {
   mergeMap,
@@ -7,29 +9,23 @@ import {
   filter,
   tap,
 } from "rxjs/operators";
-import { ofType, combineEpics } from "redux-observable";
-import {
-  SEARCH,
-  SEARCH_REJECTED,
-  GET_REPORT,
-  GET_REPORT_REJECTED,
-} from "./actionTypes";
+
 import {
   searchFulfilled,
   searchRejected,
   getReportRejected,
   getReportFulfilled,
 } from "./actions";
-import { of } from "rxjs";
+import {
+  SEARCH,
+  SEARCH_REJECTED,
+  GET_REPORT,
+  GET_REPORT_REJECTED,
+} from "./actionTypes";
+
+import { encodeDataSource } from "./usda";
 
 const USDA_API_KEY = "FYTSTF75mesLeO85VFSKvqgWEzdL0hQAYCZUtjJk";
-
-const encodeDataSource = (dataSourceCode) =>
-  ({
-    BOTH: encodeURIComponent(""),
-    STANDARD_REFERENCE: encodeURIComponent("Standard Reference"),
-    BRANDED_FOOD_PRODUCTS: encodeURIComponent("Branded Food Products"),
-  }[dataSourceCode]);
 
 const searchEpic = (action$, state$) =>
   action$.pipe(

@@ -22,16 +22,38 @@ export const groupOrderNumber = (nutrient) => {
 
 export const groupByNutrientGroup = (nutrients) => groupBy(nutrients, "group");
 
-export const dataSourceIdentifierLookup = {
-  BOTH: "Any",
-  STANDARD_REFERENCE: "Standard Reference",
-  BRANDED_FOOD_PRODUCTS: "Branded Food Products",
+export const dataSources = {
+  ANY: "ANY",
+  STANDARD: "STANDARD",
+  BRANDED: "BRANDED",
 };
 
-export const dataSourceIdentifiers = Object.keys(dataSourceIdentifierLookup);
+export const dataSourceIdentifierToFormat = {
+  [dataSources.BOTH]: "Any",
+  [dataSources.STANDARD]: "Standard Reference",
+  [dataSources.BRANDED]: "Branded Food Products",
+};
 
-export const decodeDataSourceIdentifier = (identifier) =>
-  dataSourceIdentifierLookup[identifier];
+export const decodeDataSource = (ds) =>
+  ({
+    any: dataSources.ANY,
+    "Standard Reference": dataSources.STANDARD,
+    "Branded Food Products": dataSources.BRANDED,
+  }[decodeURIComponent(ds)]);
+
+export const encodeDataSource = (dataSourceIdentifier) =>
+  encodeURIComponent(
+    {
+      [dataSources.ANY]: "",
+      [dataSources.STANDARD]: "Standard Reference",
+      [dataSources.BRANDED]: "Branded Food Products",
+    }[dataSourceIdentifier]
+  );
+
+export const dataSourceIdentifiers = Object.values(dataSources);
+
+export const formatDataSource = (dataSourceIdentifier) =>
+  dataSourceIdentifierToFormat[dataSourceIdentifier];
 
 export const getNutrient = (food, name) => find(food.nutrients, { name });
 
