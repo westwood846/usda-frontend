@@ -39,22 +39,6 @@ const SearchPage = ({
     }
   }, [location, dataSource, setDataSource, query, setQuery, search]);
 
-  let renderResult = searching ? (
-    <span>
-      Searching for "{query}" in {decodeDataSourceIdentifier(dataSource)}...
-    </span>
-  ) : error ? (
-    error.errors.error.map((error, index) => (
-      <div key={index} style={{ color: "red" }}>
-        {error.message}
-      </div>
-    ))
-  ) : result ? (
-    <Suspense fallback={<LazyLoadingFallback />}>
-      <SearchResult result={result} />
-    </Suspense>
-  ) : null;
-
   return (
     <div className="SearchPage">
       <div className="header">
@@ -64,7 +48,16 @@ const SearchPage = ({
         <SearchBar />
       </div>
       <hr />
-      <div className="ResultContainer">{renderResult}</div>
+      <div className="ResultContainer">
+        <Suspense fallback={<LazyLoadingFallback />}>
+          <SearchResult
+            result={result}
+            error={error}
+            searching={searching}
+            dataSource={dataSource}
+          />
+        </Suspense>
+      </div>
     </div>
   );
 };

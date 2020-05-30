@@ -1,17 +1,29 @@
 import React from "react";
-import { sortBy } from "lodash";
+import { sortBy, get } from "lodash";
 
 import SearchResultItem from "./SearchResultItem";
 
-export const SearchResult = ({ result }) => {
-  const items = sortBy(result.list.item, "name");
-  const query = result.list.q;
-  const ds = result.list.ds;
-  const start = result.list.start + 1;
-  const end = Number(result.list.end);
-  const total = result.list.total;
+import { decodeDataSourceIdentifier } from "../usda";
 
-  return (
+export const SearchResult = ({ result, searching, dataSource, error }) => {
+  const items = sortBy(get(result, "list.item"), "name");
+  const query = get(result, "list.q");
+  const ds = get(result, "list.ds");
+  const start = get(result, "list.start") + 1;
+  const end = Number(get(result, "list.end"));
+  const total = get(result, "list.total");
+
+  return searching ? (
+    <span>
+      Searching for "{query}" in {decodeDataSourceIdentifier(dataSource)}...
+    </span>
+  ) : error ? (
+    error.errors.error.map((error, index) => (
+      <div key={index} style={{ color: "red" }}>
+        {error.message}
+      </div>
+    ))
+  ) : result ? (
     <div className="SearchResult">
       <div className="descriptor">
         Result for "{query}" in "{ds}" ({start} to {end} of {total}):
@@ -24,7 +36,7 @@ export const SearchResult = ({ result }) => {
         ))}
       </ul>
     </div>
-  );
+  ) : null;
 };
 
 export default SearchResult;
