@@ -2,6 +2,7 @@
   "name": "usda-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://westwood846.github.io/usda-frontend",
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",

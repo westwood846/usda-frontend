@@ -1,16 +1,17 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
-import "./App.css";
-import SearchPage from "./Search/SearchPage";
-import ReportPage from "./Report/ReportPage";
-import TablePage from "./Table/TablePage";
-import CompareToaster from "./Table/CompareToaster";
+import { hot } from "react-hot-loader";
 import { ConnectedRouter } from "connected-react-router";
 import { ThemeProvider } from "@material-ui/core/styles";
+
 import theme from "./theme";
-import { hot } from "react-hot-loader";
 import { history } from "./store.js";
+
 import Navbar from "./Site/Navbar";
+import CompareToaster from "./Table/CompareToaster";
+
+import routes from "./routes";
+
+import "./App.css";
 
 const App = () => {
   return (
@@ -18,13 +19,8 @@ const App = () => {
       <div className="App">
         <ThemeProvider theme={theme}>
           <Navbar />
-          <Switch>
-            <Route path="/" exact component={SearchPage} />
-            <Route path="/search" exact component={SearchPage} />
-            <Route path="/report/:ndbno" component={ReportPage} />
-            <Route path="/compare" exact component={TablePage} />
-          </Switch>
           <CompareToaster />
+          {routes}
         </ThemeProvider>
       </div>
     </ConnectedRouter>
