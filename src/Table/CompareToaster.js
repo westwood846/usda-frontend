@@ -73,7 +73,9 @@ export const CompareToaster = withRouter(
                   `}
                   title={item.report ? item.report.desc.name : item.ndbno}
                 >
-                  {item.report ? item.report.desc.name : item.fallbackName}
+                  <Link to={`/report/${item.ndbno}`}>
+                    {item.report ? item.report.desc.name : item.fallbackName}
+                  </Link>
                 </td>
                 <td>{item.amount} g</td>
                 <td>
