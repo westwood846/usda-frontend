@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/usda-frontend/precache-manifest.c86b096ce9245b4d265c0a27acac0218.js"
+  "/usda-frontend/precache-manifest.e3a4c71202d22ddef1788d7cee0c2bfa.js"
 );
 
 self.addEventListener('message', (event) => {
