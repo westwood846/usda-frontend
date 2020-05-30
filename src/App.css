@@ -170,19 +170,8 @@ hr {
 }
 
 .emoji-comparator {
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; */
   width: 100%;
   text-align: center;
-}
-
-.input-range {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  width: 460px !important;
 }
 
 .Comparator {
@@ -196,9 +185,6 @@ hr {
 .Comparator-header {
   text-align: center;
   line-height: 8pt;
-}
-
-.Comparator-header h2 {
 }
 
 /* latin-ext */
