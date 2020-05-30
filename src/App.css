@@ -63,7 +63,7 @@ a {
 }
 
 .SearchResultItem h3 {
-  margin-bottom: 0.1rem;
+  margin: 0;
   font-weight: normal;
 }
 
@@ -73,7 +73,6 @@ a {
 }
 
 .SearchResultItem-metaDescriptor {
-  display: inline-swap;
   min-width: 11rem;
   margin-right: 1rem;
   font-size: 10pt;

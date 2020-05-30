@@ -51,6 +51,7 @@ const SearchPage = ({
       <div className="ResultContainer">
         <Suspense fallback={<LazyLoadingFallback />}>
           <SearchResult
+            query={query}
             result={result}
             error={error}
             searching={searching}
