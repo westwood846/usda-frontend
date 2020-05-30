@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -26,6 +26,7 @@ export const ReportPage = ({
   const urlNDBNO = match.params.ndbno;
 
   useEffect(() => {
+    console.log("ee");
     getReport(urlNDBNO);
   }, [urlNDBNO, getReport]);
 
