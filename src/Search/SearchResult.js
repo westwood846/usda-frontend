@@ -1,6 +1,7 @@
 import React from "react";
 import { sortBy, get, times, constant } from "lodash";
 
+import { Typography } from "@material-ui/core";
 import SearchResultItem from "./SearchResultItem";
 import { decodeDataSourceIdentifier } from "../usda";
 
@@ -19,13 +20,16 @@ export const SearchResult = ({
   const end = Number(get(result, "list.end"));
   const total = get(result, "list.total");
 
-  return error ? (
-    error.errors.error.map((error, index) => (
-      <div key={index} style={{ color: "red" }}>
+  if (query.trim().length === 0) return null;
+
+  if (error)
+    return error.errors.error.map((error, index) => (
+      <Typography key={index} color="error">
         {error.message}
-      </div>
-    ))
-  ) : (
+      </Typography>
+    ));
+
+  return (
     <div className="SearchResult">
       <div className="descriptor">
         {searching ? (

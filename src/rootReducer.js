@@ -46,21 +46,21 @@ const appReducer = (state = initialState, { type, payload }) => {
       };
 
     case SEARCH:
-      if (state.searchQuery === "") {
-        return {
-          ...state,
-          searching: false,
-          searchResult: undefined,
-          searchError: undefined,
-        };
-      } else {
-        return {
-          ...state,
-          searching: true,
-          searchResult: undefined,
-          searchError: undefined,
-        };
-      }
+      // if (payload.query === "") {
+      //   return {
+      //     ...state,
+      //     searching: false,
+      //     searchResult: undefined,
+      //     searchError: undefined,
+      //   };
+      // } else {
+      return {
+        ...state,
+        searching: true,
+        searchResult: undefined,
+        searchError: undefined,
+      };
+    // }
 
     case SEARCH_FULFILLED:
       return { ...state, searchResult: payload, searching: false };

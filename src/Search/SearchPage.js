@@ -1,43 +1,50 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import SearchBar from "./SearchBar";
 import { setQuery, setDataSource, search } from "../actions";
 import Logo from "../Site/Logo";
-import { decodeDataSourceIdentifier } from "../usda";
+// import { decodeDataSourceIdentifier } from "../usda";
+import { push } from "connected-react-router";
 import LazyLoadingFallback from "../common/LazyLoadingFallback";
 import { Box } from "@material-ui/core";
+import useDebounce from "../common/useDebounce";
+import { get } from "lodash";
 
 const SearchResult = React.lazy(() => import("./SearchResult"));
 
-const SearchPage = ({
-  location,
-  dataSource,
-  setDataSource,
-  query,
-  setQuery,
-  search,
-  searching,
-  error,
-  result,
-}) => {
-  useEffect(() => {
-    let urlParams = new URLSearchParams(window.location.search);
+const decodeDataSource = (ds) =>
+  ({
+    any: "BOTH",
+    "Standard Reference": "STANDARD_REFERENCE",
+    "Branded Food Products": "BRANDED_FOOD_PRODUCTS",
+  }[ds]);
 
-    if (
-      urlParams.has("dataSource") &&
-      urlParams.get("dataSource") !== dataSource
-    ) {
-      setDataSource(urlParams.get("dataSource"));
-    }
-    if (urlParams.has("query")) {
-      if (urlParams.get("query") !== query) {
-        setQuery(urlParams.get("query"));
-        search();
-      }
-    } else {
-      setQuery("");
-    }
-  }, [location, dataSource, setDataSource, query, setQuery, search]);
+const SearchPage = ({ push, location, search, searching, error, result }) => {
+  const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 100);
+  const [dataSource, setDataSource] = useState("STANDARD_REFERENCE");
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    if (urlParams.has("dataSource"))
+      setDataSource(
+        decodeDataSource(decodeURIComponent(urlParams.get("dataSource")))
+      );
+    if (urlParams.has("query"))
+      setQuery(decodeURIComponent(urlParams.get("query")));
+  }, [location]);
+
+  useEffect(() => {
+    if (!searching && get(result, "list.item.length", 0) > 0)
+      push(
+        `?query=${get(result, "list.q")}&dataSource=${get(result, "list.ds")}`
+      );
+  }, [push, result, searching]);
+
+  useEffect(() => {
+    if (debouncedQuery && debouncedQuery.trim().length > 0)
+      search(debouncedQuery, dataSource);
+  }, [debouncedQuery, dataSource, search]);
 
   return (
     <div className="SearchPage">
@@ -45,7 +52,12 @@ const SearchPage = ({
         <Box mr={3}>
           <Logo />
         </Box>
-        <SearchBar />
+        <SearchBar
+          query={query}
+          setQuery={setQuery}
+          dataSource={dataSource}
+          setDataSource={setDataSource}
+        />
       </div>
       <hr />
       <div className="ResultContainer">
@@ -76,6 +88,7 @@ const mapDispatchToProps = {
   setQuery,
   setDataSource,
   search,
+  push,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

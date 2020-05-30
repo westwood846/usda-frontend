@@ -24,7 +24,7 @@ import { of } from "rxjs";
 
 const USDA_API_KEY = "FYTSTF75mesLeO85VFSKvqgWEzdL0hQAYCZUtjJk";
 
-const decodeDataSource = (dataSourceCode) =>
+const encodeDataSource = (dataSourceCode) =>
   ({
     BOTH: encodeURIComponent(""),
     STANDARD_REFERENCE: encodeURIComponent("Standard Reference"),
@@ -35,14 +35,14 @@ const searchEpic = (action$, state$) =>
   action$.pipe(
     ofType(SEARCH),
     debounceTime(500),
-    filter((action) => state$.value.app.searchQuery !== ""),
+    filter((action) => action.payload.query !== ""),
     tap(console.log(state$.value)),
     mergeMap((action) =>
       ajax
         .getJSON(
           `https://api.nal.usda.gov/ndb/search?api_key=${USDA_API_KEY}&q=${encodeURIComponent(
-            state$.value.app.searchQuery
-          )}&ds=${decodeDataSource(state$.value.app.searchDataSource)}`
+            action.payload.query
+          )}&ds=${encodeDataSource(action.payload.dataSource)}`
         )
         .pipe(
           map((response) =>

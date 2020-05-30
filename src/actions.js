@@ -19,7 +19,10 @@ export const setDataSource = (dataSource) => ({
   type: SET_DATA_SOURCE,
   payload: dataSource,
 });
-export const search = () => ({ type: SEARCH });
+export const search = (query, dataSource) => ({
+  type: SEARCH,
+  payload: { query, dataSource },
+});
 export const searchFulfilled = (result) => ({
   type: SEARCH_FULFILLED,
   payload: result,
