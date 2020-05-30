@@ -1,19 +1,25 @@
+import "./rhlConfig"; // Needs to be in a separate file and needs to be first
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import store, { history } from "./store.js";
+import createStore from "./store.js";
 import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
 
-ReactDOM.render(
-  <Provider store={store()}>
-    <ConnectedRouter history={history}>
+const store = createStore();
+
+const render = () => {
+  ReactDOM.render(
+    // The store provider has to be outside of the hot App so that it won't be
+    // reloaded when there's an update
+    <Provider store={store}>
       <App />
-    </ConnectedRouter>
-  </Provider>,
-  document.getElementById("root")
-);
+    </Provider>,
+    document.getElementById("root")
+  );
+};
 
 serviceWorker.unregister();
+
+render();
