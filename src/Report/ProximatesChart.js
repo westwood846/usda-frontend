@@ -3,6 +3,12 @@ import { PieChart, Pie, Cell, Label, Legend } from "recharts";
 import { getNutrientValue } from "../usda";
 import { flatten } from "lodash";
 
+import yellow from "@material-ui/core/colors/yellow";
+import lightGreen from "@material-ui/core/colors/lightGreen";
+import pink from "@material-ui/core/colors/pink";
+import lightBlue from "@material-ui/core/colors/lightBlue";
+import grey from "@material-ui/core/colors/grey";
+
 export default class ProximatesChart extends PureComponent {
   getValue = (key) =>
     (getNutrientValue(this.props.report, key) * this.props.mass) / 100;
@@ -85,11 +91,11 @@ export default class ProximatesChart extends PureComponent {
     };
 
     let colors = [
-      ["#ffeb3b", "#fdd835", "#fbc02d", "#f9a825"],
-      ["#aed581", "#8bc34a", "#689f38"],
-      ["#f06292"],
-      ["#2196f3"],
-      ["#e0e0e0"],
+      [yellow[500], yellow[700], yellow[800], yellow[300]], // fats
+      [lightGreen[500], lightGreen[700], lightGreen[300]], // carbs
+      [pink[500]], // protein
+      [lightBlue[500]], // water
+      [grey[300]], // other
     ];
 
     let legend = data01.map((entry, index) => ({

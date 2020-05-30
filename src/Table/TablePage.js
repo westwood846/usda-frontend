@@ -5,6 +5,16 @@ import useDeepCompareEffect from "use-deep-compare-effect";
 import { css } from "emotion";
 import { withRouter, Link } from "react-router-dom";
 
+import red from "@material-ui/core/colors/red";
+import pink from "@material-ui/core/colors/pink";
+import purple from "@material-ui/core/colors/purple";
+import deepPurple from "@material-ui/core/colors/deepPurple";
+import indigo from "@material-ui/core/colors/indigo";
+import blue from "@material-ui/core/colors/blue";
+import lightBlue from "@material-ui/core/colors/lightBlue";
+import cyan from "@material-ui/core/colors/cyan";
+import teal from "@material-ui/core/colors/teal";
+
 import {
   reduce,
   get,
@@ -42,14 +52,15 @@ import {
 } from "recharts";
 
 const colors = [
-  "#f44336",
-  "#e91e63",
-  "#673ab7",
-  "#3f51b5",
-  "#2196f3",
-  "#03a9f4",
-  "#00bcd4",
-  "#009688",
+  red[300],
+  pink[300],
+  purple[300],
+  deepPurple[300],
+  indigo[300],
+  blue[300],
+  lightBlue[300],
+  cyan[300],
+  teal[300],
 ];
 
 const staticColumns = [
