@@ -1,10 +1,10 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 
 import { get } from "lodash";
 
-import { Box } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 
 import Logo from "../Site/Logo";
 import SearchBar from "./SearchBar";
@@ -16,20 +16,34 @@ import { setQuery, setDataSource, search } from "../actions";
 
 const SearchResult = React.lazy(() => import("./SearchResult"));
 
+const DEFAULT_QUERY = "";
+const DEFAULT_DATA_SOURCE = dataSources.STANDARD;
+
 const SearchPage = ({ push, location, search, searching, error, result }) => {
-  const urlParams = new URLSearchParams(location.search);
+  const urlParams = useMemo(() => new URLSearchParams(location.search), [
+    location.search,
+  ]);
 
   const [query, setQuery] = useState(
-    urlParams.has("query") ? decodeURIComponent(urlParams.get("query")) : ""
+    urlParams.has("query")
+      ? decodeURIComponent(urlParams.get("query"))
+      : DEFAULT_QUERY
   );
   const [dataSource, setDataSource] = useState(
     urlParams.has("dataSource")
       ? decodeDataSource(decodeURIComponent(urlParams.get("dataSource")))
-      : dataSources.STANDARD
+      : DEFAULT_DATA_SOURCE
   );
 
-  const debouncedQuery = useDebounce(query, 100);
+  const debouncedQuery = useDebounce(query, 200);
 
+  // Reset state when query params get removed
+  useEffect(() => {
+    if (!urlParams.has("query")) setQuery(DEFAULT_QUERY);
+    if (!urlParams.has("dataSource")) setDataSource(DEFAULT_DATA_SOURCE);
+  }, [urlParams]);
+
+  // Update URL on successful search
   useEffect(() => {
     if (!searching && get(result, "list.item.length", 0) > 0)
       push(
@@ -37,39 +51,59 @@ const SearchPage = ({ push, location, search, searching, error, result }) => {
       );
   }, [push, result, searching]);
 
+  // Trigger search on state change
   useEffect(() => {
     if (debouncedQuery && debouncedQuery.trim().length > 0)
       search(debouncedQuery, dataSource);
   }, [debouncedQuery, dataSource, search]);
 
-  return (
-    <div className="SearchPage">
-      <div className="header">
-        <Box mr={3}>
-          <Logo />
-        </Box>
-        <SearchBar
-          query={query}
-          setQuery={setQuery}
-          dataSource={dataSource}
-          setDataSource={setDataSource}
-        />
-      </div>
-      <hr />
-      <div className="ResultContainer">
-        {(searching || result || error) && (
+  const searchBar = (
+    <SearchBar
+      query={query}
+      setQuery={setQuery}
+      dataSource={dataSource}
+      setDataSource={setDataSource}
+    />
+  );
+
+  if (query !== "")
+    return (
+      <div className="SearchPage">
+        <div className="header">
+          <Box mr={3}>
+            <Logo />
+          </Box>
+          {searchBar}
+        </div>
+        <hr />
+        <div className="ResultContainer">
           <Suspense fallback={<LazyLoadingFallback />}>
             <SearchResult
               searching={searching}
               result={result}
               error={error}
-              query={query}
+              query={debouncedQuery}
               dataSource={dataSource}
             />
           </Suspense>
-        )}
+        </div>
       </div>
-    </div>
+    );
+
+  return (
+    <Container maxWidth="sm">
+      <Box
+        height="100vh"
+        display="flex"
+        justifyContent="center"
+        flexDirection="column"
+      >
+        <Box mt={-5} mb={3} textAlign="center">
+          <Logo />
+        </Box>
+        {searchBar}
+      </Box>
+    </Container>
   );
 };
 

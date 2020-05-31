@@ -6,7 +6,6 @@ import InputRange from "@material-ui/core/Slider";
 import "react-input-range/lib/css/index.css";
 import { get, isUndefined } from "lodash";
 
-import Breadcrumbs from "./Breadcrumbs";
 import Analysis from "./Analysis";
 import Report from "./Report";
 import Loading from "./Loading";
@@ -50,7 +49,6 @@ export const ReportPage = ({
               <small>{[ds, manu, ndbno].filter((e) => e).join(" · ")}</small>
             )}
           </div>
-          {loaded && <Breadcrumbs name={name} />}
           <Link to="/search/" className="newSearchLink">
             &#8592; New Search
           </Link>
