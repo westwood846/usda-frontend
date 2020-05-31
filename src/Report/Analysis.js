@@ -1,25 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import ProximatesChart from "./ProximatesChart";
 import Comparator from "./Comparator";
 
-class Analysis extends Component {
-  render() {
-    let calories =
-      (this.props.report.nutrients.find(
-        (nutrient) => nutrient.name === "Energy"
-      ).value *
-        this.props.mass) /
-      100;
+export const Analysis = ({ report, mass }) => {
+  const calories =
+    (report.nutrients.find((nutrient) => nutrient.name === "Energy").value *
+      mass) /
+    100;
 
-    return (
-      <div className="Analysis">
-        <ProximatesChart report={this.props.report} mass={this.props.mass} />
-        <Comparator calories={calories} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Analysis">
+      <ProximatesChart report={report} mass={mass} />
+      <Comparator calories={calories} />
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   mass: state.app.mass,

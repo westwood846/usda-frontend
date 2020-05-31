@@ -1,5 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
+
+import { chunk } from "lodash";
+
 import {
   sortNutrientsByGroup,
   groupByNutrientGroup,
@@ -8,31 +11,28 @@ import {
   getDatum,
   getReference,
 } from "../usda";
-import { chunk } from "lodash";
 
-class Report extends Component {
-  datum = (key, precision) =>
-    getDatum(this.props.report, key, this.props.factor, precision);
+export const Report = ({ report, factor }) => {
+  const datum = (key, precision) => getDatum(report, key, factor, precision);
 
-  reference = (key) =>
-    `${getReference(key, this.props.report, this.props.factor)}%`;
+  const reference = (key) => `${getReference(key, report, factor)}%`;
 
-  datumCell = (key, label = key, main) => (
+  const datumCell = (key, label = key, main) => (
     <td className={`nutTable-left ${!main && "indent-2"}`}>
       {main ? <strong>{label} </strong> : label + " "}
-      {this.datum(key)}
+      {datum(key)}
     </td>
   );
-  referenceCell = (key) => (
-    <td className="nutTable-right">{this.reference(key)}</td>
+  const referenceCell = (key) => (
+    <td className="nutTable-right">{reference(key)}</td>
   );
 
-  tableRow = (index, key, label = key, main = false) => {
-    if (getNutrient(this.props.report, key)) {
+  const tableRow = (index, key, label = key, main = false) => {
+    if (getNutrient(report, key)) {
       return (
         <tr key={index}>
-          {this.datumCell(key, label, main)}
-          {this.referenceCell(key)}
+          {datumCell(key, label, main)}
+          {referenceCell(key)}
         </tr>
       );
     } else {
@@ -40,12 +40,12 @@ class Report extends Component {
     }
   };
 
-  doubleTable = (nutrients) => {
+  const doubleTable = (nutrients) => {
     let datumCells = nutrients.map((nutrient) =>
-      this.datumCell(nutrient.name, labels[nutrient.name], true)
+      datumCell(nutrient.name, labels[nutrient.name], true)
     );
     let referenceCells = nutrients.map((nutrient) =>
-      this.referenceCell(nutrient.name)
+      referenceCell(nutrient.name)
     );
 
     let datumCellChucks = chunk(datumCells, 2);
@@ -69,7 +69,7 @@ class Report extends Component {
     );
   };
 
-  tableRows = [
+  const tableRows = [
     { label: "Calories", key: "Energy", main: true },
     { label: "Total Fat", key: "Total lipid (fat)", main: true },
     {
@@ -101,28 +101,24 @@ class Report extends Component {
     { label: "Protein", key: "Protein", main: true },
   ];
 
-  render() {
-    let nutrients = sortNutrientsByGroup(this.props.report.nutrients);
-    let nutrientGroups = groupByNutrientGroup(nutrients);
+  const nutrients = sortNutrientsByGroup(report.nutrients);
+  const nutrientGroups = groupByNutrientGroup(nutrients);
 
-    return (
-      <div className="Report">
-        <table className="nutTable">
-          <tbody>
-            {this.tableRows.map((row, index) =>
-              this.tableRow(index, row.key, row.label, row.main)
-            )}
-          </tbody>
-        </table>
-        {nutrientGroups["Vitamins"] &&
-          this.doubleTable(nutrientGroups["Vitamins"])}
-        {nutrientGroups["Minerals"] &&
-          this.doubleTable(nutrientGroups["Minerals"])}
-        {nutrientGroups["Other"] && this.doubleTable(nutrientGroups["Other"])}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Report">
+      <table className="nutTable">
+        <tbody>
+          {tableRows.map((row, index) =>
+            tableRow(index, row.key, row.label, row.main)
+          )}
+        </tbody>
+      </table>
+      {nutrientGroups["Vitamins"] && doubleTable(nutrientGroups["Vitamins"])}
+      {nutrientGroups["Minerals"] && doubleTable(nutrientGroups["Minerals"])}
+      {nutrientGroups["Other"] && doubleTable(nutrientGroups["Other"])}
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   mass: state.app.mass,
