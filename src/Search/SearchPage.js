@@ -17,19 +17,18 @@ import { setQuery, setDataSource, search } from "../actions";
 const SearchResult = React.lazy(() => import("./SearchResult"));
 
 const SearchPage = ({ push, location, search, searching, error, result }) => {
-  const [query, setQuery] = useState("");
-  const debouncedQuery = useDebounce(query, 100);
-  const [dataSource, setDataSource] = useState(dataSources.STANDARD);
+  const urlParams = new URLSearchParams(location.search);
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    if (urlParams.has("query"))
-      setQuery(decodeURIComponent(urlParams.get("query")));
-    if (urlParams.has("dataSource"))
-      setDataSource(
-        decodeDataSource(decodeURIComponent(urlParams.get("dataSource")))
-      );
-  }, [location]);
+  const [query, setQuery] = useState(
+    urlParams.has("query") ? decodeURIComponent(urlParams.get("query")) : ""
+  );
+  const [dataSource, setDataSource] = useState(
+    urlParams.has("dataSource")
+      ? decodeDataSource(decodeURIComponent(urlParams.get("dataSource")))
+      : dataSources.STANDARD
+  );
+
+  const debouncedQuery = useDebounce(query, 100);
 
   useEffect(() => {
     if (!searching && get(result, "list.item.length", 0) > 0)
