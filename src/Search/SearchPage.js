@@ -58,13 +58,13 @@ const SearchPage = ({ push, location, search, searching, error, result }) => {
       </div>
       <hr />
       <div className="ResultContainer">
-        {searching && (
+        {(searching || result || error) && (
           <Suspense fallback={<LazyLoadingFallback />}>
             <SearchResult
-              query={query}
+              searching={searching}
               result={result}
               error={error}
-              searching={searching}
+              query={query}
               dataSource={dataSource}
             />
           </Suspense>
