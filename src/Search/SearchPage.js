@@ -68,26 +68,22 @@ const SearchPage = ({ push, location, search, searching, error, result }) => {
 
   if (query !== "")
     return (
-      <div className="SearchPage">
-        <div className="header">
-          <Box mr={3}>
-            <Logo />
-          </Box>
-          {searchBar}
-        </div>
+      <Container>
+        <Box mt={4} mb={2}>
+          <Logo />
+        </Box>
+        {searchBar}
         <hr />
-        <div className="ResultContainer">
-          <Suspense fallback={<LazyLoadingFallback />}>
-            <SearchResult
-              searching={searching}
-              result={result}
-              error={error}
-              query={debouncedQuery}
-              dataSource={dataSource}
-            />
-          </Suspense>
-        </div>
-      </div>
+        <Suspense fallback={<LazyLoadingFallback />}>
+          <SearchResult
+            searching={searching}
+            result={result}
+            error={error}
+            query={debouncedQuery}
+            dataSource={dataSource}
+          />
+        </Suspense>
+      </Container>
     );
 
   return (
@@ -98,8 +94,8 @@ const SearchPage = ({ push, location, search, searching, error, result }) => {
         justifyContent="center"
         flexDirection="column"
       >
-        <Box mt={-5} mb={3} textAlign="center">
-          <Logo />
+        <Box mt={-10} mb={3} textAlign="center">
+          <Logo variant="h3" />
         </Box>
         {searchBar}
       </Box>

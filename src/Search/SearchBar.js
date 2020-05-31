@@ -1,6 +1,14 @@
 import React from "react";
 
 import { dataSourceIdentifiers, formatDataSource } from "../usda";
+import {
+  Box,
+  TextField,
+  FormControl,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from "@material-ui/core";
 
 const SearchBar = ({ query, setQuery, dataSource, setDataSource }) => {
   const handleInputChange = (event) => {
@@ -12,31 +20,31 @@ const SearchBar = ({ query, setQuery, dataSource, setDataSource }) => {
   };
 
   return (
-    <div className="SearchBar">
-      <label>
-        <input
-          type="text"
-          className="queryInput"
-          value={query}
-          onChange={handleInputChange}
-          autoFocus
-        />
-      </label>
-      <br />
-      Data Source:&nbsp;
-      {dataSourceIdentifiers.map((identifier) => (
-        <label className="dataSourceInputLabel" key={identifier}>
-          <input
-            type="radio"
-            className="dataSourceInput"
-            value={identifier}
-            checked={dataSource === identifier}
-            onChange={handleDataSourceChange}
-          ></input>
-          {formatDataSource(identifier)}
-        </label>
-      ))}
-    </div>
+    <Box display="flex" flexDirection="column">
+      <TextField
+        variant="outlined"
+        value={query}
+        onChange={handleInputChange}
+        autoFocus
+      />
+      <FormControl component="fieldset" hiddenLabel={true}>
+        <RadioGroup
+          row
+          aria-label="Data Source"
+          name="dataSource"
+          value={dataSource}
+          onChange={handleDataSourceChange}
+        >
+          {dataSourceIdentifiers.map((identifier) => (
+            <FormControlLabel
+              value={identifier}
+              control={<Radio />}
+              label={formatDataSource(identifier)}
+            />
+          ))}
+        </RadioGroup>
+      </FormControl>
+    </Box>
   );
 };
 

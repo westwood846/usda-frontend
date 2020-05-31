@@ -29,7 +29,7 @@ export const dataSources = {
 };
 
 export const dataSourceIdentifierToFormat = {
-  [dataSources.BOTH]: "Any",
+  [dataSources.ANY]: "Any",
   [dataSources.STANDARD]: "Standard Reference",
   [dataSources.BRANDED]: "Branded Food Products",
 };

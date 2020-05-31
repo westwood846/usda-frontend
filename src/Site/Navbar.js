@@ -11,7 +11,7 @@ export const Navbar = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Logo variant="white" />
+        <Logo color="white" />
       </Toolbar>
     </AppBar>
   );
